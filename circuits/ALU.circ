@@ -132,6 +132,9 @@
     <comp lib="0" loc="(1030,1280)" name="Ground">
       <a name="facing" val="west"/>
     </comp>
+    <comp lib="0" loc="(1030,1290)" name="Ground">
+      <a name="facing" val="west"/>
+    </comp>
     <comp lib="0" loc="(1030,1300)" name="Ground">
       <a name="facing" val="west"/>
     </comp>
