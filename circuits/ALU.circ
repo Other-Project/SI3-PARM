@@ -182,6 +182,9 @@
     <comp lib="0" loc="(1260,1550)" name="Ground">
       <a name="facing" val="west"/>
     </comp>
+    <comp lib="0" loc="(1260,1560)" name="Ground">
+      <a name="facing" val="west"/>
+    </comp>
     <comp lib="0" loc="(1260,1590)" name="Ground">
       <a name="facing" val="west"/>
     </comp>
@@ -536,10 +539,8 @@
     <wire from="(1110,1110)" to="(1110,1320)"/>
     <wire from="(1160,1460)" to="(1200,1460)"/>
     <wire from="(1160,1590)" to="(1190,1590)"/>
-    <wire from="(1190,1530)" to="(1190,1560)"/>
+    <wire from="(1190,1530)" to="(1190,1570)"/>
     <wire from="(1190,1530)" to="(1260,1530)"/>
-    <wire from="(1190,1560)" to="(1190,1570)"/>
-    <wire from="(1190,1560)" to="(1260,1560)"/>
     <wire from="(1190,1570)" to="(1190,1590)"/>
     <wire from="(1190,1570)" to="(1260,1570)"/>
     <wire from="(1200,1460)" to="(1200,1520)"/>
