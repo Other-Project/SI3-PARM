@@ -97,25 +97,7 @@ end type_architecture;
 </a>
     </tool>
   </lib>
-  <lib desc="#TCL" name="7">
-    <tool name="TclGeneric">
-      <a name="content">library ieee;
-use ieee.std_logic_1164.all;
-
-entity TCL_Generic is
-  port(
-    --Insert input ports below
-    horloge_i  : in  std_logic;                    -- input bit example
-    val_i      : in  std_logic_vector(3 downto 0); -- input vector example
-
-	  --Insert output ports below
-    max_o      : out std_logic;                    -- output bit example
-    cpt_o      : out std_logic_Vector(3 downto 0)  -- output vector example
-  );
-end TCL_Generic;
-</a>
-    </tool>
-  </lib>
+  <lib desc="#TCL" name="7"/>
   <lib desc="#Base" name="8">
     <tool name="Text Tool">
       <a name="font" val="SansSerif plain 12"/>
@@ -466,18 +448,6 @@ end TCL_Generic;
     <wire from="(430,90)" to="(460,90)"/>
     <wire from="(440,120)" to="(440,330)"/>
     <wire from="(440,120)" to="(460,120)"/>
-  </circuit>
-  <circuit name="default_to_output">
-    <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="default_to_output"/>
-    <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="1.0"/>
-  </circuit>
-  <circuit name="register_selector">
-    <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="register_selector"/>
-    <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="1.0"/>
   </circuit>
   <circuit name="flags_up">
     <a name="appearance" val="logisim_evolution"/>
