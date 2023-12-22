@@ -5,4 +5,9 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::BED36594-94EF-40F0-A888-05C04B114B22::net8.0::Assembler.Tests.AssemblyFileTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ab07d230_002D391a_002D44b2_002Db6bb_002D1656997a88f4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AssemblyFileTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::BED36594-94EF-40F0-A888-05C04B114B22::net8.0::Assembler.Tests.AssemblyFileTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

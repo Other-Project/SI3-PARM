@@ -10,17 +10,17 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
     public static Instruction[] Instructions { get; } =
     {
         // Shift, add, sub, mov
-        new("LSLS r{Rd}, r{Rm}, #{imm5}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd),
-        new("LSRS r{Rd}, r{Rm}, #{imm5}", 0b00_001, Argument.Imm5, Argument.Rm, Argument.Rd),
-        new("ASRS r{Rd}, r{Rm}, #{imm5}", 0b00_010, Argument.Imm5, Argument.Rm, Argument.Rd),
+        new("LSLS r{Rd}, r{Rm}, #{imm}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd),
+        new("LSRS r{Rd}, r{Rm}, #{imm}", 0b00_001, Argument.Imm5, Argument.Rm, Argument.Rd),
+        new("ASRS r{Rd}, r{Rm}, #{imm}", 0b00_010, Argument.Imm5, Argument.Rm, Argument.Rd),
         new("ADDS r{Rd}, r{Rn}, r{Rm}", 0b00_011_00, Argument.Rm, Argument.Rn, Argument.Rd),
         new("SUBS r{Rd}, r{Rn}, r{Rm}", 0b00_011_01, Argument.Rm, Argument.Rn, Argument.Rd),
-        new("ADDS r{Rd}, r{Rn}, #{imm3}", 0b00_011_10, Argument.Imm3, Argument.Rn, Argument.Rd),
-        new("SUBS r{Rd}, r{Rn}, #{imm3}", 0b00_011_11, Argument.Imm3, Argument.Rn, Argument.Rd),
-        new("MOVS r{Rd}, #{imm8}", 0b00_100, Argument.Rd, Argument.Imm8),
-        new("CMP r{Rd}, #{imm8}", 0b00_101, Argument.Rd, Argument.Imm8),
-        new("ADDS r{Rdn}, #{imm8}", 0b00_110, Argument.Rdn, Argument.Imm8),
-        new("SUBS r{Rdn}, #{imm8}", 0b00_111, Argument.Rdn, Argument.Imm8),
+        new("ADDS r{Rd}, r{Rn}, #{imm}", 0b00_011_10, Argument.Imm3, Argument.Rn, Argument.Rd),
+        new("SUBS r{Rd}, r{Rn}, #{imm}", 0b00_011_11, Argument.Imm3, Argument.Rn, Argument.Rd),
+        new("MOVS r{Rd}, #{imm}", 0b00_100, Argument.Rd, Argument.Imm8),
+        new("CMP r{Rd}, #{imm}", 0b00_101, Argument.Rd, Argument.Imm8),
+        new("ADDS r{Rdn}, #{imm}", 0b00_110, Argument.Rdn, Argument.Imm8),
+        new("SUBS r{Rdn}, #{imm}", 0b00_111, Argument.Rdn, Argument.Imm8),
 
         // Data processing
         new("ANDS r{Rdn}, r{Rm}", 0b010000_0000, Argument.Rm, Argument.Rdn),
@@ -41,22 +41,37 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
 
         // Load/Store
-        new("STR r{Rt}, \\[SP, #{imm8}]", 0b1001_0, Argument.Rt, Argument.Imm8_4),
-        new("LDR r{Rt}, \\[SP, #{imm8}]", 0b1001_1, Argument.Rt, Argument.Imm8_4),
+        new("STR r{Rt}, \\[SP, #{imm}]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
+        new("LDR r{Rt}, \\[SP, #{imm}]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
 
         // Miscellaneous 16-bit instructions
-        new("ADD SP, #{imm7}", 0b1011_00000, Argument.Imm7_4),
-        new("SUB SP, #{imm7}", 0b1011_00001, Argument.Imm7_4),
+        new("ADD SP(, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
+        new("SUB SP(, SP)?, #{imm}", 0b1011_00001, Argument.Imm7Shift2),
 
         // Branch
-        // TODO
+        new("BEQ \\.{label}", 0b1101_0000, Argument.Label8),
+        new("BNE \\.{label}", 0b1101_0001, Argument.Label8),
+        new("BCS \\.{label}", 0b1101_0010, Argument.Label8),
+        new("BCC \\.{label}", 0b1101_0011, Argument.Label8),
+        new("BMI \\.{label}", 0b1101_0100, Argument.Label8),
+        new("BPL \\.{label}", 0b1101_0101, Argument.Label8),
+        new("BVS \\.{label}", 0b1101_0110, Argument.Label8),
+        new("BVC \\.{label}", 0b1101_0111, Argument.Label8),
+        new("BHI \\.{label}", 0b1101_1000, Argument.Label8),
+        new("BLS \\.{label}", 0b1101_1001, Argument.Label8),
+        new("BGE \\.{label}", 0b1101_1010, Argument.Label8),
+        new("BLT \\.{label}", 0b1101_1011, Argument.Label8),
+        new("BGT \\.{label}", 0b1101_1100, Argument.Label8),
+        new("BLE \\.{label}", 0b1101_1101, Argument.Label8),
+        new("BAL \\.{label}", 0b1101_1110, Argument.Label8),
+        new("B \\.{label}", 0b1110_0, Argument.Label11)
     };
 
     private string RegexPattern { get; } = Argument.Arguments.Aggregate(RegexPattern, (current, argument) => argument.GetRegex(current)).Replace(" ", " ?");
     private int BinaryPrefix { get; } = BinaryPrefix;
     [SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Local")] private Argument[] BinaryArgs { get; } = BinaryArgs;
 
-    public int Process(string line)
+    public int Process(string line, int lineNumber, AssemblyFile assemblyFile)
     {
         var regex = Regex.Match(line, RegexPattern, RegexOptions.IgnoreCase);
         if (!regex.Success) return -1;
@@ -66,8 +81,18 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
         {
-            if (!int.TryParse(args[arg.Arg].Value, out var argValue)) return -1;
-            binary |= arg.GetValue(argValue) << shift;
+            var argValueStr = args[arg.Arg].Value;
+            int argValue;
+            if (arg.Arg == "label")
+            {
+                argValue = assemblyFile.Labels[argValueStr] - lineNumber - 3;
+            }
+            else if (!int.TryParse(argValueStr, out argValue)) return -1;
+
+            argValue = arg.GetValue(argValue);
+            if (argValue < 0) argValue += 1 << arg.Size; // Complement to 2 on the right number of bits
+
+            binary |= argValue << shift;
             shift += arg.Size;
         }
 
