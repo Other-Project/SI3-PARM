@@ -22,6 +22,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
         }
         while (inputStream.ReadLine() is { } line)
         {
+            line = line.Trim();
             if (line.Length == 0) continue;
 
             Debug.WriteLine("Processing {0}", line);
