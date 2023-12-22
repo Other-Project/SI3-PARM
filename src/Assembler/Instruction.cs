@@ -41,8 +41,8 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
 
         // Load/Store
-        new("STR r{Rt}, \\[SP, #{imm}]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
-        new("LDR r{Rt}, \\[SP, #{imm}]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
+        new("STR r{Rt}, \\[SP(, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
+        new("LDR r{Rt}, \\[SP(, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
 
         // Miscellaneous 16-bit instructions
         new("ADD SP(, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
@@ -81,6 +81,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
         {
+            if (!args[arg.Arg].Success) continue;
             var argValueStr = args[arg.Arg].Value;
             int argValue;
             if (arg.Arg == "label")
