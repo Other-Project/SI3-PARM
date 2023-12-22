@@ -1,0 +1,15 @@
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\bin\Debug\net8.0\Assembler.exe
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\bin\Debug\net8.0\Assembler.deps.json
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\bin\Debug\net8.0\Assembler.runtimeconfig.json
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\bin\Debug\net8.0\Assembler.dll
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\bin\Debug\net8.0\Assembler.pdb
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.AssemblyInfoInputs.cache
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.AssemblyInfo.cs
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.csproj.CoreCompileInputs.cache
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.sourcelink.json
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.dll
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\refint\Assembler.dll
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.pdb
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\Assembler.genruntimeconfig.cache
+C:\Users\alban\OneDrive\Documents\Polytech\SI3\S5\Architecture\projectARM\SI3-PARM\src\Assembler\obj\Debug\net8.0\ref\Assembler.dll
