@@ -1,0 +1,31 @@
+v2.0 raw
+# Automatically generated the 2023-12-23 00:47:29Z from loop.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# sub sp, #508
+b0ff
+
+# sub sp, #452
+b0f1
+# Enables MMIO
+
+# GOTO LABEL 'for_loop'
+
+# adds r0, #1
+3001
+# i++
+
+# cmp r0, #249
+28f9
+# i compareTo 249
+
+# str r0, [sp, #4]
+9001
+# write i into the 7 seg
+
+# bLS .for_loop
+d9fa
+# loop while i <= 249
+# will stop at 250
+
