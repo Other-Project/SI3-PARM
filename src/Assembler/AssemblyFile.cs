@@ -6,10 +6,10 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
 {
     public Dictionary<string, int> Labels { get; } = new();
 
-    public void WriteToFile()
+    public void WriteToFile(bool comments = true)
     {
         using var outputStream = File.CreateText(Path.ChangeExtension(AssemblyFileInfo.FullName, "bin"));
-        ConvertToLogicimBinary(outputStream);
+        ConvertToLogicimBinary(outputStream, comments);
     }
 
     public void ConvertToLogicimBinary(TextWriter outputStream, bool comments = true)
