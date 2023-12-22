@@ -8,8 +8,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
 
     public void WriteToFile()
     {
-        using var outputFileStream = File.OpenWrite(Path.ChangeExtension(AssemblyFileInfo.FullName, "bin"));
-        using var outputStream = new StreamWriter(outputFileStream);
+        using var outputStream = File.CreateText(Path.ChangeExtension(AssemblyFileInfo.FullName, "bin"));
         ConvertToLogicimBinary(outputStream);
     }
 
