@@ -15,7 +15,11 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
     {
         using var inputStream = AssemblyFileInfo.OpenText();
         outputStream.WriteLine("v2.0 raw");
-        if (comments) outputStream.WriteLine($"# {AssemblyFileInfo.Name}\n");
+        if (comments)
+        {
+            outputStream.WriteLine($"# Automatically generated from {AssemblyFileInfo.Name}");
+            outputStream.WriteLine($"# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)\n");
+        }
         while (inputStream.ReadLine() is { } line)
         {
             if (line.Length == 0) continue;
@@ -24,6 +28,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
             if (line[0] == '@')
             {
                 Debug.WriteLine("Comment detected: {0}", line);
+                if (comments) outputStream.WriteLine($"# {line[1..]}");
                 continue;
             }
 
@@ -36,7 +41,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
             if (result < 0) throw new NotSupportedException("Couldn't parse line: " + line);
 
             Debug.WriteLine("Generated: {0:B16} -> {0:X4}", result);
-            if (comments) outputStream.WriteLine($"# {line}\n{result:x4}");
+            if (comments) outputStream.WriteLine($"\n# {line}\n{result:x4}");
             else outputStream.Write($"{result:x4} ");
         }
         outputStream.WriteLine();
