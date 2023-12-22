@@ -1,0 +1,22 @@
+v2.0 raw
+# 1-4_instructions.s
+
+# movs r0, #0
+2000
+# movs r1, #1
+2101
+# movs r2, #170
+22aa
+# movs r3, #255
+23ff
+# lsls r4, r2, #1
+0054
+# lsrs r5, r2, #1
+0855
+# subs r6, r0, #5
+1f46
+# asrs r6, r6, #1
+1076
+# adds r7, r6, r1 
+1877
+

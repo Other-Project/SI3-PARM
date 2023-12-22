@@ -1,0 +1,18 @@
+v2.0 raw
+# 5-8_instructions.s
+
+# movs r0, #0
+2000
+# movs r1, #1
+2101
+# movs r2, #170
+22aa
+# movs r3, #255
+23ff
+# subs r4, r3, r2
+1a9c
+# adds r5, r2, #5
+1d55
+# movs r6, #179
+26b3
+
