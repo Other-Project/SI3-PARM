@@ -20,10 +20,39 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new("MOVS r{Rd}, #{imm8}", 0b00_100, Argument.Rd, Argument.Imm8),
         new("CMP r{Rd}, #{imm8}", 0b00_101, Argument.Rd, Argument.Imm8),
         new("ADDS r{Rdn}, #{imm8}", 0b00_110, Argument.Rdn, Argument.Imm8),
-        new("SUBS r{Rdn}, #{imm8}", 0b00_111, Argument.Rdn, Argument.Imm8)
+        new("SUBS r{Rdn}, #{imm8}", 0b00_111, Argument.Rdn, Argument.Imm8),
+
+        // Data processing
+        new("ANDS r{Rdn}, r{Rm}", 0b010000_0000, Argument.Rm, Argument.Rdn),
+        new("EORS r{Rdn}, r{Rm}", 0b010000_0001, Argument.Rm, Argument.Rdn),
+        new("LSLS r{Rdn}, r{Rm}", 0b010000_0010, Argument.Rm, Argument.Rdn),
+        new("LSRS r{Rdn}, r{Rm}", 0b010000_0011, Argument.Rm, Argument.Rdn),
+        new("ASRS r{Rdn}, r{Rm}", 0b010000_0100, Argument.Rm, Argument.Rdn),
+        new("ADCS r{Rdn}, r{Rm}", 0b010000_0101, Argument.Rm, Argument.Rdn),
+        new("SBCS r{Rdn}, r{Rm}", 0b010000_0110, Argument.Rm, Argument.Rdn),
+        new("RORS r{Rdn}, r{Rm}", 0b010000_0111, Argument.Rm, Argument.Rdn),
+        new("TST r{Rn}, r{Rm}", 0b010000_1000, Argument.Rm, Argument.Rn),
+        new("RSBS r{Rd}, r{Rn}", 0b010000_1001, Argument.Rn, Argument.Rd),
+        new("CMP r{Rn}, r{Rm}", 0b010000_1010, Argument.Rm, Argument.Rn),
+        new("CMN r{Rn}, r{Rm}", 0b010000_1011, Argument.Rm, Argument.Rn),
+        new("ORRS r{Rdn}, r{Rm}", 0b010000_1100, Argument.Rm, Argument.Rdn),
+        new("MULS r{Rdm}, r{Rn}, r{Rdm}", 0b010000_1101, Argument.Rn, Argument.Rdm),
+        new("BICS r{Rdn}, r{Rm}", 0b010000_1110, Argument.Rm, Argument.Rdn),
+        new("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
+
+        // Load/Store
+        new("STR r{Rt}, \\[SP, #{imm8}]", 0b1001_0, Argument.Rt, Argument.Imm8_4),
+        new("LDR r{Rt}, \\[SP, #{imm8}]", 0b1001_1, Argument.Rt, Argument.Imm8_4),
+
+        // Miscellaneous 16-bit instructions
+        new("ADD SP, #{imm7}", 0b1011_00000, Argument.Imm7_4),
+        new("SUB SP, #{imm7}", 0b1011_00001, Argument.Imm7_4),
+
+        // Branch
+        // TODO
     };
 
-    private string RegexPattern { get; } = Argument.Arguments.Aggregate(RegexPattern, (current, argument) => current.Replace($"{{{argument.Arg}}}", @$"(?<{argument.Arg}>\d+)"));
+    private string RegexPattern { get; } = Argument.Arguments.Aggregate(RegexPattern, (current, argument) => argument.GetRegex(current)).Replace(" ", " ?");
     private int BinaryPrefix { get; } = BinaryPrefix;
     [SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Local")] private Argument[] BinaryArgs { get; } = BinaryArgs;
 
@@ -38,7 +67,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         foreach (var arg in BinaryArgs.Reverse())
         {
             if (!int.TryParse(args[arg.Arg].Value, out var argValue)) return -1;
-            binary |= argValue << shift;
+            binary |= arg.GetValue(argValue) << shift;
             shift += arg.Size;
         }
 
