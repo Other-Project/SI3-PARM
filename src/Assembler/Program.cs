@@ -1,6 +1,6 @@
 ﻿using Assembler;
 
-foreach (var input in new DirectoryInfo("shift_add_sub_mov").EnumerateFiles("*.s", SearchOption.AllDirectories))
+foreach (var input in new DirectoryInfo(".").EnumerateFiles("*.s", SearchOption.AllDirectories))
 {
     Console.WriteLine("Processing file {0}", input.FullName);
 
