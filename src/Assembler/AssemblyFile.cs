@@ -28,12 +28,13 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
         var lineNumber = 1;
         while (inputStream.ReadLine() is { } line)
         {
-            line = line.Trim();
+            line = line.Trim().Replace('\t', ' ');
             if (line.Length == 0) continue;
 
             Debug.WriteLine("Processing {0} at {1}", line, lineNumber);
             switch (line[0])
             {
+                case '#':
                 case '@':
                 {
                     Debug.WriteLine("Comment detected '{0}' at {1}", line, lineNumber);
@@ -42,12 +43,16 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 }
                 case '.':
                 {
-                    if (line[^1] != ':') throw new FormatException("Expected ':' at the end of the line");
+                    if (line[^1] != ':') continue; // TODO: Symbols are ignored
                     var label = line.Substring(1, line.Length - 2);
                     Debug.WriteLine("Label '{0}' detected at {1}", label, lineNumber);
                     if (comments) outputStream.WriteLine($"\n# GOTO LABEL '{label}'");
                     continue;
                 }
+            }
+            if (line[^1] == ':') // Procedure
+            {
+                continue; // TODO
             }
 
             var result = -1;
@@ -81,7 +86,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 }
                 case '.':
                 {
-                    if (line[^1] != ':') throw new FormatException("Expected ':' at the end of the line");
+                    if (line[^1] != ':') continue;
                     var label = line.Substring(1, line.Length - 2);
                     Labels.Add(label, lineNumber);
                     continue;
