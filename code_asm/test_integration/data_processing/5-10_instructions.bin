@@ -1,2 +1,54 @@
 v2.0 raw
-2000 2101 22aa 23ff 240f 4264 1064 2505 414d 418d 418d 26aa 41ce 4232 
+# Automatically generated the 2023-12-22 21:53:28Z from 5-10_instructions.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# movs r0, #0
+2000
+
+# movs r1, #1
+2101
+
+# movs r2, #170
+22aa
+
+# movs r3, #255
+23ff
+
+# movs r4, #15
+240f
+
+# rsbs r4, r4, #0
+4264
+# r4 value should be -15, FFFFFFF1
+
+# asrs r4, r4, #1
+1064
+# r4 value should be -8, FFFFFFF8
+
+# movs r5, #5
+2505
+
+# adcs r5, r1
+414d
+# r5 value should be 7, 7
+
+# sbcs r5, r1
+418d
+
+# sbcs r5, r1
+418d
+# r5 decimal value should be 4, 4
+
+# movs r6, #170
+26aa
+
+# rors r6, r1
+41ce
+# r5 value should be 85, 55
+
+# tst r2, r6
+4232
+# flag Z should be activated, flags value should be 0100
+# Needs shift_add_sub_move to be implemented
+

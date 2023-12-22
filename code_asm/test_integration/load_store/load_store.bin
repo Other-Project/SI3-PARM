@@ -1,2 +1,31 @@
 v2.0 raw
-20aa 21ff b004 9001 9100 b081 9a01 
+# Automatically generated the 2023-12-22 21:53:28Z from load_store.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# movs r0, #170
+20aa
+
+# movs r1, #255
+21ff
+
+# add sp, #16
+b004
+
+# str r0, [sp, #4]
+9001
+
+# str r1, [sp, #0]
+9100
+
+# sub sp, #4
+b081
+
+# ldr r2,[sp, #4]
+9a01
+# r0 value should be 170, AA,
+# r1 and r2 values should be 255, FF,
+# In RAM, 04 value should be 255, FF,
+# In RAM, 05 value should be 170, AA,
+# Needs shift_add_sub_move and sp_address to be implemented
+

@@ -1,2 +1,55 @@
 v2.0 raw
-2000 2101 2214 4288 d4ff e7ff 4252 428a dbff e000 2032 e7f4 1883 
+# Automatically generated the 2023-12-22 21:53:28Z from branch.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# movs r0, #0
+2000
+
+# movs r1, #1
+2101
+
+# GOTO LABEL 'goto'
+
+# movs r2, #20
+2214
+
+# cmp r0, r1
+4288
+
+# bMI .then1
+d4ff
+
+# b .endif1
+e7ff
+
+# GOTO LABEL 'then1'
+
+# rsbs r2, r2, #0
+4252
+
+# GOTO LABEL 'endif1'
+
+# cmp r2, r1
+428a
+
+# bLT .then2
+dbff
+
+# b .endif2
+e000
+
+# GOTO LABEL 'then2'
+
+# movs r0, #50
+2032
+
+# b .goto
+e7f4
+
+# GOTO LABEL 'endif2'
+
+# adds r3, r0, r2
+1883
+# r3 value should be 70, 46
+

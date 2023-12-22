@@ -1,2 +1,43 @@
 v2.0 raw
-2000 2101 22aa 23ff 240f 4314 252d 4355 2613 4396 43d7 
+# Automatically generated the 2023-12-22 21:53:28Z from 13-16_instructions.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# movs r0, #0
+2000
+
+# movs r1, #1
+2101
+
+# movs r2, #170
+22aa
+
+# movs r3, #255
+23ff
+
+# movs r4, #15
+240f
+
+# orrs r4, r2
+4314
+# r4 value should be 175, AF
+
+# movs r5, #45
+252d
+
+# muls r5, r2, r5
+4355
+# r5 value should be 7650, 1DE2
+
+# movs r6, #19
+2613
+
+# bics r6, r2
+4396
+# r6 value should be 17, 11
+
+# mvns r7, r2
+43d7
+# r7 value should be -171, FFFFFF55
+# Needs shift_add_sub_move to be implemented
+

@@ -1,2 +1,50 @@
 v2.0 raw
-2000 2101 2201 4252 2301 425b 40cb 2401 42cb 42ca 428c 4288 4281 
+# Automatically generated the 2023-12-22 21:53:28Z from 11-12_instructions.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# movs r0, #0
+2000
+
+# movs r1, #1
+2101
+
+# movs r2, #1
+2201
+
+# rsbs r2, r2, #0
+4252
+
+# movs r3, #1
+2301
+
+# rsbs r3, r3, #0
+425b
+
+# lsrs r3, r1
+40cb
+
+# movs r4, #1
+2401
+
+# cmn r3, r1
+42cb
+# flag should be 1001
+
+# cmn r2, r1
+42ca
+# flag should be 0110
+
+# cmp r4, r1
+428c
+# flag should be 0110
+
+# cmp r0, r1
+4288
+# flag should be 1000
+
+# cmp r1, r0
+4281
+# flag should be 0010
+# Needs shift_add_sub_move to be implemented
+

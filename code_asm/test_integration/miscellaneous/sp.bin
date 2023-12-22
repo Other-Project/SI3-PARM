@@ -1,2 +1,12 @@
 v2.0 raw
-b004 b081 
+# Automatically generated the 2023-12-22 21:53:28Z from sp.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# add sp, #16
+b004
+
+# sub sp, #4
+b081
+# At the first high state, sp value is set to 4, at the second one it is set to 3
+

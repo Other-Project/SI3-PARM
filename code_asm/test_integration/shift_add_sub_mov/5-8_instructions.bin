@@ -1,2 +1,29 @@
 v2.0 raw
-2000 2101 22aa 23ff 1a9c 1d55 26b3 
+# Automatically generated the 2023-12-22 21:53:28Z from 5-8_instructions.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# movs r0, #0
+2000
+
+# movs r1, #1
+2101
+
+# movs r2, #170
+22aa
+
+# movs r3, #255
+23ff
+
+# subs r4, r3, r2
+1a9c
+# r4 value should be 85, 55
+
+# adds r5, r2, #5
+1d55
+# r4 value should be 175, AF
+
+# movs r6, #179
+26b3
+# r6 value should be 179, B3
+

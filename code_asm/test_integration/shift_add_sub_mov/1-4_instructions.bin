@@ -1,2 +1,36 @@
 v2.0 raw
-2000 2101 22aa 23ff 0054 0855 1f46 1076 1877 
+# Automatically generated the 2023-12-22 21:53:28Z from 1-4_instructions.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)
+
+
+# movs r0, #0
+2000
+
+# movs r1, #1
+2101
+
+# movs r2, #170
+22aa
+
+# movs r3, #255
+23ff
+
+# lsls r4, r2, #1
+0054
+# r4 value should be 340, 154
+
+# lsrs r5, r2, #1
+0855
+# r5 value should be 85, 55
+
+# subs r6, r0, #5
+1f46
+
+# asrs r6, r6, #1
+1076
+# r6 value should be -3 ou FFFFFFFD
+
+# adds r7, r6, r1
+1877
+# r7 value should be -2, FFFFFFFE
+
