@@ -134,8 +134,8 @@
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="318" y="150">RegB</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="321" y="90">R6</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="341" y="90">R7</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="386" y="124">BOut</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="386" y="144">AOut</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="386" y="119">BOut</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="384" y="150">AOut</text>
       <circ-anchor facing="east" x="400" y="80"/>
       <circ-port dir="in" pin="170,140" x="130" y="90"/>
       <circ-port dir="in" pin="170,210" x="130" y="110"/>
@@ -151,8 +151,8 @@
       <circ-port dir="out" pin="1220,640" x="240" y="70"/>
       <circ-port dir="out" pin="1220,760" x="260" y="70"/>
       <circ-port dir="out" pin="1220,880" x="280" y="70"/>
-      <circ-port dir="out" pin="720,100" x="410" y="140"/>
-      <circ-port dir="out" pin="930,100" x="420" y="140"/>
+      <circ-port dir="out" pin="720,100" x="410" y="150"/>
+      <circ-port dir="out" pin="930,100" x="410" y="120"/>
     </appear>
     <comp lib="0" loc="(1060,1050)" name="Tunnel">
       <a name="facing" val="south"/>
