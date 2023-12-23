@@ -182,8 +182,8 @@ end TCL_Generic;
   <lib desc="#BFH-Praktika" name="9"/>
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#TTL" name="11"/>
-  <lib desc="file#Controller.circ" name="12"/>
-  <lib desc="file#BancDeRegistres.circ" name="13"/>
+  <lib desc="file#BancDeRegistres.circ" name="12"/>
+  <lib desc="file#Controller.circ" name="13"/>
   <lib desc="file#ALU.circ" name="14">
     <tool name="ALU">
       <a name="facing" val="east"/>
@@ -219,7 +219,7 @@ end TCL_Generic;
   <circuit name="Facade">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="Facade"/>
-    <a name="simulationFrequency" val="1.0"/>
+    <a name="simulationFrequency" val="128.0"/>
     <comp lib="0" loc="(1010,220)" name="Probe">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
@@ -315,6 +315,9 @@ end TCL_Generic;
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1140,910)" name="Tunnel">
+      <a name="label" val="RST_BTN"/>
     </comp>
     <comp lib="0" loc="(1150,1140)" name="Tunnel">
       <a name="facing" val="north"/>
@@ -954,7 +957,11 @@ end TCL_Generic;
       <a name="facing" val="north"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(580,210)" name="Tunnel">
+    <comp lib="0" loc="(580,200)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RST_BTN"/>
+    </comp>
+    <comp lib="0" loc="(580,230)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="RST_Signal"/>
     </comp>
@@ -1547,7 +1554,8 @@ end TCL_Generic;
       <a name="inputs" val="3"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(630,190)" name="OR Gate">
+    <comp lib="1" loc="(640,190)" name="OR Gate">
+      <a name="inputs" val="3"/>
       <a name="size" val="30"/>
     </comp>
     <comp lib="1" loc="(670,1800)" name="OR Gate">
@@ -1634,6 +1642,9 @@ end TCL_Generic;
       <a name="width" val="32"/>
     </comp>
     <comp lib="5" loc="(1100,1110)" name="TTY"/>
+    <comp lib="5" loc="(1120,910)" name="Button">
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="5" loc="(130,1030)" name="DipSwitch">
       <a name="labelloc" val="south"/>
     </comp>
@@ -1679,6 +1690,10 @@ end TCL_Generic;
     <comp lib="5" loc="(910,1110)" name="Hex Digit Display"/>
     <comp lib="5" loc="(950,1110)" name="Hex Digit Display"/>
     <comp lib="5" loc="(990,1110)" name="Hex Digit Display"/>
+    <comp lib="8" loc="(1124,888)" name="Text">
+      <a name="font" val="SansSerif plain 20"/>
+      <a name="text" val="Reset"/>
+    </comp>
     <comp lib="8" loc="(1230,130)" name="Text">
       <a name="font" val="SansSerif plain 20"/>
       <a name="text" val="PC effectif"/>
@@ -1747,6 +1762,7 @@ end TCL_Generic;
     <wire from="(1110,160)" to="(1130,160)"/>
     <wire from="(1120,1120)" to="(1120,1130)"/>
     <wire from="(1120,1130)" to="(1150,1130)"/>
+    <wire from="(1120,910)" to="(1140,910)"/>
     <wire from="(1150,1130)" to="(1150,1140)"/>
     <wire from="(1150,1450)" to="(1150,1510)"/>
     <wire from="(1150,1450)" to="(1160,1450)"/>
@@ -1924,19 +1940,22 @@ end TCL_Generic;
     <wire from="(540,100)" to="(550,100)"/>
     <wire from="(570,280)" to="(570,320)"/>
     <wire from="(570,280)" to="(690,280)"/>
-    <wire from="(580,210)" to="(590,210)"/>
+    <wire from="(580,200)" to="(590,200)"/>
+    <wire from="(580,230)" to="(600,230)"/>
     <wire from="(590,1160)" to="(600,1160)"/>
     <wire from="(590,1520)" to="(1130,1520)"/>
     <wire from="(590,1520)" to="(590,1630)"/>
     <wire from="(590,170)" to="(590,180)"/>
-    <wire from="(590,180)" to="(600,180)"/>
-    <wire from="(590,200)" to="(590,210)"/>
-    <wire from="(590,200)" to="(600,200)"/>
+    <wire from="(590,180)" to="(610,180)"/>
+    <wire from="(590,190)" to="(590,200)"/>
+    <wire from="(590,190)" to="(610,190)"/>
     <wire from="(600,1020)" to="(600,1160)"/>
     <wire from="(600,1020)" to="(670,1020)"/>
     <wire from="(600,1160)" to="(630,1160)"/>
     <wire from="(600,1530)" to="(1130,1530)"/>
     <wire from="(600,1530)" to="(600,1700)"/>
+    <wire from="(600,200)" to="(600,230)"/>
+    <wire from="(600,200)" to="(610,200)"/>
     <wire from="(600,990)" to="(600,1020)"/>
     <wire from="(600,990)" to="(880,990)"/>
     <wire from="(620,1770)" to="(640,1770)"/>
@@ -1950,7 +1969,7 @@ end TCL_Generic;
     <wire from="(630,1730)" to="(640,1730)"/>
     <wire from="(630,1810)" to="(630,1850)"/>
     <wire from="(630,1850)" to="(660,1850)"/>
-    <wire from="(630,190)" to="(660,190)"/>
+    <wire from="(640,190)" to="(660,190)"/>
     <wire from="(660,180)" to="(660,190)"/>
     <wire from="(660,1840)" to="(660,1850)"/>
     <wire from="(660,190)" to="(660,260)"/>
@@ -2460,11 +2479,11 @@ end TCL_Generic;
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="12" loc="(540,430)" name="Controller">
-      <a name="label" val="Controller_1"/>
-    </comp>
-    <comp lib="13" loc="(990,140)" name="BancRegistre">
+    <comp lib="12" loc="(990,140)" name="BancRegistre">
       <a name="label" val="Regs_1"/>
+    </comp>
+    <comp lib="13" loc="(540,430)" name="Controller">
+      <a name="label" val="Controller_1"/>
     </comp>
     <comp lib="14" loc="(1130,720)" name="ALU">
       <a name="label" val="ALU_1"/>
