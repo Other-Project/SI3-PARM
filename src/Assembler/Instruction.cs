@@ -43,6 +43,9 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new Instruction("BICS r{Rdn}, r{Rm}", 0b010000_1110, Argument.Rm, Argument.Rdn),
         new Instruction("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
 
+        // A5.2.3 - 010001 - Special data instructions and branch and exchange
+        new Instruction("MOVS r{Rd}, r{Rm}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd), // Fallback to LSLS <Rd>,<Rm>,#<imm5>
+
         // A5.2.4 - 100xxx - Load/store single data item
         new Instruction("STR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
         new Instruction("LDR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),

@@ -12,7 +12,7 @@ namespace Assembler.Tests;
 [TestSubject(typeof(AssemblyFile))]
 public class AssemblyFileTest(ITestOutputHelper outputHelper)
 {
-    private class DataList : IEnumerable<object[]>
+    private sealed class DataList : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator() =>
             new DirectoryInfo(".")
