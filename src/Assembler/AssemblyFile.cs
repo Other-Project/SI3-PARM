@@ -44,7 +44,6 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 {
                     if (line[^1] != ':') continue; // TODO: Symbols are ignored
                     var label = line.Substring(1, line.Length - 2);
-                    Debug.WriteLine("Label '{0}' detected at {1}", label, lineNumber);
                     if (comments) outputStream.WriteLine($"\n# GOTO LABEL '{label}'");
                     continue;
                 }
@@ -87,6 +86,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 {
                     if (line[^1] != ':') continue;
                     var label = line.Substring(1, line.Length - 2);
+                    Debug.WriteLine("Label '{0}' detected at {1}", label, lineNumber);
                     Labels.Add(label, lineNumber);
                     continue;
                 }

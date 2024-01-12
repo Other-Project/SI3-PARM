@@ -6,7 +6,8 @@ namespace Assembler;
 
 public record Instruction(string RegexPattern, int BinaryPrefix, params Argument[] BinaryArgs)
 {
-    [SuppressMessage("ReSharper", "StringLiteralTypo"), SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Global")]
+    [SuppressMessage("ReSharper", "StringLiteralTypo"),
+     SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Global")]
     public static Instruction[] Instructions { get; } =
     {
         // Shift, add, sub, mov
@@ -67,16 +68,21 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new("B \\.{label}", 0b1110_0, Argument.Label11)
     };
 
-    private string RegexPattern { get; } = Argument.Arguments.Aggregate(RegexPattern, (current, argument) => argument.GetRegex(current)).Replace(" ", " ?");
+    private string RegexPattern { get; } = Argument.Arguments
+        .Aggregate(RegexPattern, (current, argument) => argument.GetRegex(current)).Replace(" ", " ?");
+
     private int BinaryPrefix { get; } = BinaryPrefix;
-    [SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Local")] private Argument[] BinaryArgs { get; } = BinaryArgs;
+
+    [SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Local")]
+    private Argument[] BinaryArgs { get; } = BinaryArgs;
 
     public int Process(string line, int lineNumber, AssemblyFile assemblyFile)
     {
         var regex = Regex.Match(line, RegexPattern, RegexOptions.IgnoreCase);
         if (!regex.Success) return -1;
         var args = regex.Groups;
-        Debug.WriteLine("{0} instruction detected, parsed {1}", RegexPattern, string.Join(", ", args.Values.Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
+        Debug.WriteLine("{0} instruction detected, parsed {1}", RegexPattern,
+            string.Join(", ", args.Values.Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
         var shift = 0;
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
@@ -87,7 +93,9 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
                 var argValueStr = args[arg.Arg].Value;
                 if (arg.Arg == "label")
                 {
-                    argValue = assemblyFile.Labels[argValueStr] - lineNumber - 3;
+                    argValue = assemblyFile.Labels[argValueStr] - lineNumber - 4;
+                    Debug.WriteLine("{0} label found at {1}, difference {2}", argValueStr,
+                        assemblyFile.Labels[argValueStr], argValue);
                 }
                 else if (!int.TryParse(argValueStr, out argValue)) return -1;
 

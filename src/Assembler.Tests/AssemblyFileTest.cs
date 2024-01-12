@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Assembler.Tests;
 
 [TestSubject(typeof(AssemblyFile))]
-public class AssemblyFileTest
+public class AssemblyFileTest(ITestOutputHelper outputHelper)
 {
     private class DataList : IEnumerable<object[]>
     {
@@ -30,6 +31,7 @@ public class AssemblyFileTest
         var output = new StringBuilder();
         using var outputWriter = new StringWriter(output);
         new AssemblyFile(data.Input).ConvertToLogicimBinary(outputWriter, false);
+        outputHelper.WriteLine(output.ToString());
         Assert.Equal(File.ReadAllText(data.ExpectedOutputFile).Replace("\r\n", "\n"), output.ToString().Replace("\r\n", "\n"));
     }
 }
