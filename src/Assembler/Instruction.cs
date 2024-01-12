@@ -81,17 +81,19 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
         {
-            if (!args[arg.Arg].Success) continue;
-            var argValueStr = args[arg.Arg].Value;
-            int argValue;
-            if (arg.Arg == "label")
+            int argValue = 0;
+            if (args[arg.Arg].Success)
             {
-                argValue = assemblyFile.Labels[argValueStr] - lineNumber - 3;
-            }
-            else if (!int.TryParse(argValueStr, out argValue)) return -1;
+                var argValueStr = args[arg.Arg].Value;
+                if (arg.Arg == "label")
+                {
+                    argValue = assemblyFile.Labels[argValueStr] - lineNumber - 3;
+                }
+                else if (!int.TryParse(argValueStr, out argValue)) return -1;
 
-            argValue = arg.GetValue(argValue);
-            if (argValue < 0) argValue += 1 << arg.Size; // Complement to 2 on the right number of bits
+                argValue = arg.GetValue(argValue);
+                if (argValue < 0) argValue += 1 << arg.Size; // Complement to 2 on the right number of bits
+            }
 
             binary |= argValue << shift;
             shift += arg.Size;
