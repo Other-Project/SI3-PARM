@@ -46,10 +46,10 @@ if (string.IsNullOrWhiteSpace(file)) throw new ArgumentException("Expected a fil
 
 foreach (var input in new DirectoryInfo(".").EnumerateFiles(file, SearchOption.AllDirectories))
 {
-    Log.Information("Processing file {0}", Path.GetRelativePath(".", input.FullName));
+    Log.Information("Processing file {File}", Path.GetRelativePath(".", input.FullName));
 
     try { new AssemblyFile(input).WriteToFile(!compact); }
-    catch (Exception e) { Console.WriteLine("Error: {0}", e); }
+    catch (Exception e) { Log.Fatal(e, "Error processing file"); }
 }
 
 Log.CloseAndFlush();

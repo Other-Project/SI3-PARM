@@ -42,12 +42,12 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
 
         // Load/Store
-        new("STR r{Rt}, \\[SP(, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
-        new("LDR r{Rt}, \\[SP(, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
+        new("STR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
+        new("LDR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
 
         // Miscellaneous 16-bit instructions
-        new("ADD SP(, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
-        new("SUB SP(, SP)?, #{imm}", 0b1011_00001, Argument.Imm7Shift2),
+        new("ADD SP(?:, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
+        new("SUB SP(?:, SP)?, #{imm}", 0b1011_00001, Argument.Imm7Shift2),
 
         // Branch
         new("BEQ \\.{label}", 0b1101_0000, Argument.Label8),
@@ -76,37 +76,24 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
     [SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Local")]
     private Argument[] BinaryArgs { get; } = BinaryArgs;
 
-    public int Process(string line, int lineNumber, AssemblyFile assemblyFile)
+    public int Process(string line, int programCounter, AssemblyFile assemblyFile)
     {
         var regex = Regex.Match(line, RegexPattern, RegexOptions.IgnoreCase);
         if (!regex.Success) return -1;
         var args = regex.Groups;
-        Log.Verbose("{0} instruction detected, parsed {1}", RegexPattern,
+        Log.Verbose("{Instruction} instruction detected (PC #{PC}), parsed {Arguments}", RegexPattern, programCounter,
             string.Join(", ", args.Values.Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
         var shift = 0;
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
         {
-            var argValue = 0;
-            if (args[arg.Arg].Success)
-            {
-                var argValueStr = args[arg.Arg].Value;
-                if (arg.Arg == "label")
-                {
-                    argValue = assemblyFile.Labels[argValueStr] - lineNumber - 4;
-                    Log.Verbose("{0} label found at {1}, difference {2}", argValueStr,
-                        assemblyFile.Labels[argValueStr], argValue);
-                }
-                else if (!int.TryParse(argValueStr, out argValue)) return -1;
-
-                argValue = arg.GetValue(argValue);
-                if (argValue < 0) argValue += 1 << arg.Size; // Complement to 2 on the right number of bits
-            }
-
+            var argValue = args[arg.Arg].Success ? arg.Process(args[arg.Arg].Value, programCounter, assemblyFile) : 0;
             binary |= argValue << shift;
             shift += arg.Size;
         }
 
+        Log.Debug("{PC}\t{InstructionCode}\t\t{AssemblyLine}\t\t{Arguments}",
+            programCounter, $"{binary + (BinaryPrefix << shift):x4}", line, string.Join(", ", args.Values.Skip(1).Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
         return binary + (BinaryPrefix << shift);
     }
 }

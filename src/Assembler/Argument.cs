@@ -1,4 +1,6 @@
-﻿namespace Assembler;
+﻿using Serilog;
+
+namespace Assembler;
 
 public record Argument(string Arg, int Size)
 {
@@ -16,8 +18,25 @@ public record Argument(string Arg, int Size)
     public static Argument Label8 { get; } = new("label", 8) { GetRegex = pseudoRegex => pseudoRegex.Replace("{label}", @"(?<label>\S+)") };
     public static Argument Label11 { get; } = new("label", 11) { GetRegex = pseudoRegex => pseudoRegex.Replace("{label}", @"(?<label>\S+)") };
 
-    public static Argument[] Arguments { get; } = { Rd, Rm, Rn, Rdm, Rdn, Rt, Imm3, Label8 };
+    public static IEnumerable<Argument> Arguments { get; } = [Rd, Rm, Rn, Rdm, Rdn, Rt, Imm3, Label8];
 
     public Func<string, string> GetRegex { get; private init; } = pseudoRegex => pseudoRegex.Replace($"{{{Arg}}}", @$"(?<{Arg}>\d+)");
     public Func<int, int> GetValue { get; private init; } = val => val;
+
+
+    public int Process(string strValue, int programCounter, AssemblyFile assemblyFile)
+    {
+        int argValue;
+        if (Arg == "label")
+        {
+            argValue = assemblyFile.Labels[strValue] - programCounter - 3;
+            Log.Verbose("{Label} label found at PC #{Line}, offset {Offset}", strValue, assemblyFile.Labels[strValue], argValue);
+        }
+        else if (!int.TryParse(strValue, out argValue)) throw new ArgumentException("Invalid argument value " + strValue, nameof(strValue));
+
+        argValue = GetValue(argValue);
+        if (argValue < 0) argValue += 1 << Size; // Complement to 2 on the right number of bits
+
+        return argValue;
+    }
 }
