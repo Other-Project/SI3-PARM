@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+using Serilog;
 
 namespace Assembler;
 
@@ -81,20 +81,20 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         var regex = Regex.Match(line, RegexPattern, RegexOptions.IgnoreCase);
         if (!regex.Success) return -1;
         var args = regex.Groups;
-        Debug.WriteLine("{0} instruction detected, parsed {1}", RegexPattern,
+        Log.Verbose("{0} instruction detected, parsed {1}", RegexPattern,
             string.Join(", ", args.Values.Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
         var shift = 0;
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
         {
-            int argValue = 0;
+            var argValue = 0;
             if (args[arg.Arg].Success)
             {
                 var argValueStr = args[arg.Arg].Value;
                 if (arg.Arg == "label")
                 {
                     argValue = assemblyFile.Labels[argValueStr] - lineNumber - 4;
-                    Debug.WriteLine("{0} label found at {1}, difference {2}", argValueStr,
+                    Log.Verbose("{0} label found at {1}, difference {2}", argValueStr,
                         assemblyFile.Labels[argValueStr], argValue);
                 }
                 else if (!int.TryParse(argValueStr, out argValue)) return -1;

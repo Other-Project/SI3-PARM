@@ -9,4 +9,8 @@
         <DebugSymbols>False</DebugSymbols>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    </ItemGroup>
+
 </Project>

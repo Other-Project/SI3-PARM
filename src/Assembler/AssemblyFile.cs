@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using Serilog;
 
 namespace Assembler;
 
@@ -30,13 +30,13 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
             line = line.Trim().Replace('\t', ' ');
             if (line.Length == 0) continue;
 
-            Debug.WriteLine("Processing {0} at {1}", line, lineNumber);
+            Log.Verbose("Processing {0} at {1}", line, lineNumber);
             switch (line[0])
             {
                 case '#':
                 case '@':
                 {
-                    Debug.WriteLine("Comment detected '{0}' at {1}", line, lineNumber);
+                    Log.Verbose("Comment detected '{0}' at {1}", line, lineNumber);
                     if (comments) outputStream.WriteLine($"# {line[1..]}");
                     continue;
                 }
@@ -50,6 +50,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
             }
             if (line[^1] == ':') // Procedure
             {
+                Log.Verbose("Procedure detected '{0}' at {1}", line, lineNumber);
                 continue; // TODO
             }
 
@@ -61,9 +62,10 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
             }
             if (result < 0) throw new NotSupportedException("Couldn't parse line: " + line);
 
-            Debug.WriteLine("Generated: {0:B16} -> {0:X4}", result);
+            Log.Verbose("Generated: {0:B16} -> {0:X4}", result);
             if (comments) outputStream.WriteLine($"\n# {line}\n{result:x4}");
             else outputStream.Write($"{result:x4} ");
+            Log.Debug("{0}\t{1}\t{2}", lineNumber, $"{result:x4}", line);
             lineNumber++;
         }
         outputStream.WriteLine();
@@ -86,7 +88,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 {
                     if (line[^1] != ':') continue;
                     var label = line.Substring(1, line.Length - 2);
-                    Debug.WriteLine("Label '{0}' detected at {1}", label, lineNumber);
+                    Log.Verbose("Label '{0}' detected at {1}", label, lineNumber);
                     Labels.Add(label, lineNumber);
                     continue;
                 }
