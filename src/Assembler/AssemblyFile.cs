@@ -61,6 +61,8 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 continue; // TODO
             }
 
+            if (line.StartsWith("push") || line.StartsWith("add r7, sp")) continue;
+
             var result = -1;
             foreach (var instruction in Instruction.Instructions)
             {
@@ -82,7 +84,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
         var programCounter = 0;
         while (inputStream.ReadLine() is { } line)
         {
-            line = line.Trim();
+            line = line.Trim().Replace('\t', ' ');
             if (line.Length == 0) continue;
             if (line[0] == '.' && line[^1] == ':')
             {
@@ -92,6 +94,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
             }
             if (!char.IsLetterOrDigit(line[0])) continue;
             if (line[^1] == ':') continue;
+            if (line.StartsWith("push") || line.StartsWith("add r7, sp")) continue;
             programCounter++;
         }
         inputStream.BaseStream.Seek(0, SeekOrigin.Begin);
