@@ -64,7 +64,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new("BLT \\.{label}", 0b1101_1011, Argument.Label8),
         new("BGT \\.{label}", 0b1101_1100, Argument.Label8),
         new("BLE \\.{label}", 0b1101_1101, Argument.Label8),
-        new("BAL \\.{label}", 0b1101_1110, Argument.Label8),
+        new("BAL \\.{label}", 0b1110_0, Argument.Label11), // See note p206 of the ARM manual (section A7.7.12)
         new("B \\.{label}", 0b1110_0, Argument.Label11)
     };
 
