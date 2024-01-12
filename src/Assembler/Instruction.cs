@@ -6,67 +6,73 @@ namespace Assembler;
 
 public record Instruction(string RegexPattern, int BinaryPrefix, params Argument[] BinaryArgs)
 {
-    [SuppressMessage("ReSharper", "StringLiteralTypo"),
-     SuppressMessage("ReSharper", "ReturnTypeCanBeEnumerable.Global")]
-    public static Instruction[] Instructions { get; } =
-    {
-        // Shift, add, sub, mov
-        new("LSLS r{Rd}, r{Rm}, #{imm}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd),
-        new("LSRS r{Rd}, r{Rm}, #{imm}", 0b00_001, Argument.Imm5, Argument.Rm, Argument.Rd),
-        new("ASRS r{Rd}, r{Rm}, #{imm}", 0b00_010, Argument.Imm5, Argument.Rm, Argument.Rd),
-        new("ADDS r{Rd}, r{Rn}, r{Rm}", 0b00_011_00, Argument.Rm, Argument.Rn, Argument.Rd),
-        new("SUBS r{Rd}, r{Rn}, r{Rm}", 0b00_011_01, Argument.Rm, Argument.Rn, Argument.Rd),
-        new("ADDS r{Rd}, r{Rn}, #{imm}", 0b00_011_10, Argument.Imm3, Argument.Rn, Argument.Rd),
-        new("SUBS r{Rd}, r{Rn}, #{imm}", 0b00_011_11, Argument.Imm3, Argument.Rn, Argument.Rd),
-        new("MOVS r{Rd}, #{imm}", 0b00_100, Argument.Rd, Argument.Imm8),
-        new("CMP r{Rd}, #{imm}", 0b00_101, Argument.Rd, Argument.Imm8),
-        new("ADDS r{Rdn}, #{imm}", 0b00_110, Argument.Rdn, Argument.Imm8),
-        new("SUBS r{Rdn}, #{imm}", 0b00_111, Argument.Rdn, Argument.Imm8),
+    /// <summary>All supported instructions</summary>
+    /// <remarks>For more information refer to Arm v7-M manual, section A5.2 16-bit Thumb instruction encoding</remarks>
+    // ReSharper disable CommentTypo
+    // ReSharper disable StringLiteralTypo
+    public static IEnumerable<Instruction> Instructions { get; } =
+    [
+        // A5.2.1 - 00xxxx - Shift (immediate), add, subtract, move, and compare
+        new Instruction("LSLS r{Rd}, r{Rm}, #{imm}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd),
+        new Instruction("LSRS r{Rd}, r{Rm}, #{imm}", 0b00_001, Argument.Imm5, Argument.Rm, Argument.Rd),
+        new Instruction("ASRS r{Rd}, r{Rm}, #{imm}", 0b00_010, Argument.Imm5, Argument.Rm, Argument.Rd),
+        new Instruction("ADDS r{Rd}, r{Rn}, r{Rm}", 0b00_011_00, Argument.Rm, Argument.Rn, Argument.Rd),
+        new Instruction("SUBS r{Rd}, r{Rn}, r{Rm}", 0b00_011_01, Argument.Rm, Argument.Rn, Argument.Rd),
+        new Instruction("ADDS r{Rd}, r{Rn}, #{imm}", 0b00_011_10, Argument.Imm3, Argument.Rn, Argument.Rd),
+        new Instruction("SUBS r{Rd}, r{Rn}, #{imm}", 0b00_011_11, Argument.Imm3, Argument.Rn, Argument.Rd),
+        new Instruction("MOVS r{Rd}, #{imm}", 0b00_100, Argument.Rd, Argument.Imm8),
+        new Instruction("CMP r{Rd}, #{imm}", 0b00_101, Argument.Rd, Argument.Imm8),
+        new Instruction("ADDS r{Rdn}, #{imm}", 0b00_110, Argument.Rdn, Argument.Imm8),
+        new Instruction("SUBS r{Rdn}, #{imm}", 0b00_111, Argument.Rdn, Argument.Imm8),
 
-        // Data processing
-        new("ANDS r{Rdn}, r{Rm}", 0b010000_0000, Argument.Rm, Argument.Rdn),
-        new("EORS r{Rdn}, r{Rm}", 0b010000_0001, Argument.Rm, Argument.Rdn),
-        new("LSLS r{Rdn}, r{Rm}", 0b010000_0010, Argument.Rm, Argument.Rdn),
-        new("LSRS r{Rdn}, r{Rm}", 0b010000_0011, Argument.Rm, Argument.Rdn),
-        new("ASRS r{Rdn}, r{Rm}", 0b010000_0100, Argument.Rm, Argument.Rdn),
-        new("ADCS r{Rdn}, r{Rm}", 0b010000_0101, Argument.Rm, Argument.Rdn),
-        new("SBCS r{Rdn}, r{Rm}", 0b010000_0110, Argument.Rm, Argument.Rdn),
-        new("RORS r{Rdn}, r{Rm}", 0b010000_0111, Argument.Rm, Argument.Rdn),
-        new("TST r{Rn}, r{Rm}", 0b010000_1000, Argument.Rm, Argument.Rn),
-        new("RSBS r{Rd}, r{Rn}", 0b010000_1001, Argument.Rn, Argument.Rd),
-        new("CMP r{Rn}, r{Rm}", 0b010000_1010, Argument.Rm, Argument.Rn),
-        new("CMN r{Rn}, r{Rm}", 0b010000_1011, Argument.Rm, Argument.Rn),
-        new("ORRS r{Rdn}, r{Rm}", 0b010000_1100, Argument.Rm, Argument.Rdn),
-        new("MULS r{Rdm}, r{Rn}, r{Rdm}", 0b010000_1101, Argument.Rn, Argument.Rdm),
-        new("BICS r{Rdn}, r{Rm}", 0b010000_1110, Argument.Rm, Argument.Rdn),
-        new("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
+        // A5.2.2 - 010000 - Data processing
+        new Instruction("ANDS r{Rdn}, r{Rm}", 0b010000_0000, Argument.Rm, Argument.Rdn),
+        new Instruction("EORS r{Rdn}, r{Rm}", 0b010000_0001, Argument.Rm, Argument.Rdn),
+        new Instruction("LSLS r{Rdn}, r{Rm}", 0b010000_0010, Argument.Rm, Argument.Rdn),
+        new Instruction("LSRS r{Rdn}, r{Rm}", 0b010000_0011, Argument.Rm, Argument.Rdn),
+        new Instruction("ASRS r{Rdn}, r{Rm}", 0b010000_0100, Argument.Rm, Argument.Rdn),
+        new Instruction("ADCS r{Rdn}, r{Rm}", 0b010000_0101, Argument.Rm, Argument.Rdn),
+        new Instruction("SBCS r{Rdn}, r{Rm}", 0b010000_0110, Argument.Rm, Argument.Rdn),
+        new Instruction("RORS r{Rdn}, r{Rm}", 0b010000_0111, Argument.Rm, Argument.Rdn),
+        new Instruction("TST r{Rn}, r{Rm}", 0b010000_1000, Argument.Rm, Argument.Rn),
+        new Instruction("RSBS r{Rd}, r{Rn}", 0b010000_1001, Argument.Rn, Argument.Rd),
+        new Instruction("CMP r{Rn}, r{Rm}", 0b010000_1010, Argument.Rm, Argument.Rn),
+        new Instruction("CMN r{Rn}, r{Rm}", 0b010000_1011, Argument.Rm, Argument.Rn),
+        new Instruction("ORRS r{Rdn}, r{Rm}", 0b010000_1100, Argument.Rm, Argument.Rdn),
+        new Instruction("MULS r{Rdm}, r{Rn}, r{Rdm}", 0b010000_1101, Argument.Rn, Argument.Rdm),
+        new Instruction("BICS r{Rdn}, r{Rm}", 0b010000_1110, Argument.Rm, Argument.Rdn),
+        new Instruction("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
 
-        // Load/Store
-        new("STR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
-        new("LDR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
+        // A5.2.4 - 100xxx - Load/store single data item
+        new Instruction("STR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
+        new Instruction("LDR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
 
-        // Miscellaneous 16-bit instructions
-        new("ADD SP(?:, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
-        new("SUB SP(?:, SP)?, #{imm}", 0b1011_00001, Argument.Imm7Shift2),
+        // A5.2.5 - 1011xx - Miscellaneous 16-bit instructions
+        new Instruction("ADD SP(?:, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
+        new Instruction("SUB SP(?:, SP)?, #{imm}", 0b1011_00001, Argument.Imm7Shift2),
 
-        // Branch
-        new("BEQ \\.{label}", 0b1101_0000, Argument.Label8),
-        new("BNE \\.{label}", 0b1101_0001, Argument.Label8),
-        new("BCS \\.{label}", 0b1101_0010, Argument.Label8),
-        new("BCC \\.{label}", 0b1101_0011, Argument.Label8),
-        new("BMI \\.{label}", 0b1101_0100, Argument.Label8),
-        new("BPL \\.{label}", 0b1101_0101, Argument.Label8),
-        new("BVS \\.{label}", 0b1101_0110, Argument.Label8),
-        new("BVC \\.{label}", 0b1101_0111, Argument.Label8),
-        new("BHI \\.{label}", 0b1101_1000, Argument.Label8),
-        new("BLS \\.{label}", 0b1101_1001, Argument.Label8),
-        new("BGE \\.{label}", 0b1101_1010, Argument.Label8),
-        new("BLT \\.{label}", 0b1101_1011, Argument.Label8),
-        new("BGT \\.{label}", 0b1101_1100, Argument.Label8),
-        new("BLE \\.{label}", 0b1101_1101, Argument.Label8),
-        new("BAL \\.{label}", 0b1110_0, Argument.Label11), // See note p206 of the ARM manual (section A7.7.12)
-        new("B \\.{label}", 0b1110_0, Argument.Label11)
-    };
+        // A5.2.6 - 1101xx - Conditional branch, and Supervisor Call
+        new Instruction("BEQ \\.{label}", 0b1101_0000, Argument.Label8),
+        new Instruction("BNE \\.{label}", 0b1101_0001, Argument.Label8),
+        new Instruction("B(?:CS|HS) \\.{label}", 0b1101_0010, Argument.Label8),
+        new Instruction("B(?:CC|LO) \\.{label}", 0b1101_0011, Argument.Label8),
+        new Instruction("BMI \\.{label}", 0b1101_0100, Argument.Label8),
+        new Instruction("BPL \\.{label}", 0b1101_0101, Argument.Label8),
+        new Instruction("BVS \\.{label}", 0b1101_0110, Argument.Label8),
+        new Instruction("BVC \\.{label}", 0b1101_0111, Argument.Label8),
+        new Instruction("BHI \\.{label}", 0b1101_1000, Argument.Label8),
+        new Instruction("BLS \\.{label}", 0b1101_1001, Argument.Label8),
+        new Instruction("BGE \\.{label}", 0b1101_1010, Argument.Label8),
+        new Instruction("BLT \\.{label}", 0b1101_1011, Argument.Label8),
+        new Instruction("BGT \\.{label}", 0b1101_1100, Argument.Label8),
+        new Instruction("BLE \\.{label}", 0b1101_1101, Argument.Label8),
+        new Instruction("BAL \\.{label}", 0b1110_0, Argument.Label11), // See note p206 of the ARM manual (section A7.7.12)
+
+        // A7.7.12 - 11100x - Unconditional Branch (B)
+        new Instruction("B \\.{label}", 0b1110_0, Argument.Label11)
+    ];
+    // ReSharper restore StringLiteralTypo
+    // ReSharper restore CommentTypo
 
     private string RegexPattern { get; } = Argument.Arguments
         .Aggregate(RegexPattern, (current, argument) => argument.GetRegex(current)).Replace(" ", " ?");
