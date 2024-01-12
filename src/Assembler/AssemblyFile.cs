@@ -21,7 +21,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
         if (comments)
         {
             outputStream.WriteLine($"# Automatically generated the {DateTime.Now:u} from {AssemblyFileInfo.Name}");
-            outputStream.WriteLine($"# Program made by Evan GALLI, Alban FALCOZ and Theo LAUSSAUNIERE (2023-2024)\n");
+            outputStream.WriteLine($"# Program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (2023-2024)\n");
         }
 
         var programCounter = 0;
