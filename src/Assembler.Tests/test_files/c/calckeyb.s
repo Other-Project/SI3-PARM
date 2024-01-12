@@ -9,7 +9,7 @@
 	.eabi_attribute	34, 0
 	.eabi_attribute	17, 1
 	.eabi_attribute	20, 1
-	.eabi_attribute	21, 0
+	.eabi_attribute	21, 1
 	.eabi_attribute	23, 3
 	.eabi_attribute	24, 1
 	.eabi_attribute	25, 1
@@ -99,13 +99,13 @@ run:
 	str	r0, [sp, #80]
 	b	.LBB0_19
 .LBB0_19:
-	ldr	r1, [sp, #48]
-	movs	r0, #10
-	muls	r0, r1, r0
-	str	r0, [sp, #48]
+	ldr	r0, [sp, #48]
+	movs	r1, #10
+	muls	r1, r0, r1
+	str	r1, [sp, #48]
 	ldr	r0, [sp, #44]
 	ldr	r1, [sp, #48]
-	adds	r0, r0, r1
+	adds	r0, r1, r0
 	subs	r0, #48
 	str	r0, [sp, #48]
 	b	.LBB0_7
@@ -182,13 +182,13 @@ run:
 	str	r0, [sp, #80]
 	b	.LBB0_41
 .LBB0_41:
-	ldr	r1, [sp, #32]
-	movs	r0, #10
-	muls	r0, r1, r0
-	str	r0, [sp, #32]
+	ldr	r0, [sp, #32]
+	movs	r1, #10
+	muls	r1, r0, r1
+	str	r1, [sp, #32]
 	ldr	r0, [sp, #28]
 	ldr	r1, [sp, #32]
-	adds	r0, r0, r1
+	adds	r0, r1, r0
 	subs	r0, #48
 	str	r0, [sp, #32]
 	b	.LBB0_29
@@ -299,8 +299,8 @@ run:
 	ldr	r0, [sp, #12]
 	str	r0, [sp, #16]
 	ldr	r0, [sp, #16]
-	str	r0, [sp]
 	cmp	r0, #37
+	str	r0, [sp]
 	beq	.LBB0_92
 	b	.LBB0_81
 .LBB0_81:
@@ -351,10 +351,10 @@ run:
 	str	r0, [sp, #84]
 	b	.LBB0_97
 .LBB0_90:
-	ldr	r1, [sp, #56]
-	ldr	r0, [sp, #52]
-	muls	r0, r1, r0
-	str	r0, [sp, #84]
+	ldr	r0, [sp, #56]
+	ldr	r1, [sp, #52]
+	muls	r1, r0, r1
+	str	r1, [sp, #84]
 	b	.LBB0_97
 .LBB0_91:
 	ldr	r0, [sp, #56]
@@ -446,7 +446,7 @@ run:
 .LBB0_112:
 	ldr	r0, [sp, #84]
 	cmp	r0, #0
-	bpl	.LBB0_116
+	bge	.LBB0_116
 	b	.LBB0_113
 .LBB0_113:
 	b	.LBB0_114
@@ -538,7 +538,8 @@ run:
 	.cantunwind
 	.fnend
 
-	.ident	"Ubuntu clang version 16.0.6 (15)"
+
+	.ident	"clang version 8.0.1-9 (tags/RELEASE_801/final)"
 	.section	".note.GNU-stack","",%progbits
 	.addrsig
 	.eabi_attribute	30, 6
