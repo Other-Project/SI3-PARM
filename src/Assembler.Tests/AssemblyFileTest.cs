@@ -17,7 +17,8 @@ public class AssemblyFileTest(ITestOutputHelper outputHelper)
         public IEnumerator<object[]> GetEnumerator() =>
             new DirectoryInfo(".")
                 .EnumerateFiles("*.s", SearchOption.AllDirectories)
-                .Select(assemblyCode => new object[] { new TestData(assemblyCode, Path.ChangeExtension(assemblyCode.FullName, "bin")) }).GetEnumerator();
+                .Select(assemblyCode => new object[] { new TestData(assemblyCode, Path.ChangeExtension(assemblyCode.FullName, "bin")) })
+                .GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
     public record TestData(FileInfo Input, string ExpectedOutputFile)

@@ -36,7 +36,7 @@ foreach (var arg in args)
             }
             Console.WriteLine("Assembler program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (© 2023-2024)");
             Console.WriteLine("-v, --verbose:\n\tVerbose mode, logs a lot");
-            Console.WriteLine("-d, --debug:\n\tDebug mode, logs some more informations");
+            Console.WriteLine("-d, --debug:\n\tDebug mode, logs some more information");
             Console.WriteLine("-c, --compact:\n\tGenerates compact binaries (no comments inside)");
             return;
     }

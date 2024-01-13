@@ -44,7 +44,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new Instruction("MVNS r{Rd}, r{Rm}", 0b010000_1111, Argument.Rm, Argument.Rd),
 
         // A5.2.3 - 010001 - Special data instructions and branch and exchange
-        new Instruction("MOVS r{Rd}, r{Rm}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd), // Fallback to LSLS <Rd>,<Rm>,#<imm5>
+        new Instruction("MOVS r{Rd}, r{Rm}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd), // LSLS <Rd>,<Rm>,#<imm5> with imm5=0
 
         // A5.2.4 - 100xxx - Load/store single data item
         new Instruction("STR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
@@ -92,6 +92,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         var args = regex.Groups;
         Log.Verbose("{Instruction} instruction detected (PC #{PC}), parsed {Arguments}", RegexPattern, programCounter,
             string.Join(", ", args.Values.Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
+
         var shift = 0;
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
@@ -100,9 +101,10 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
             binary |= argValue << shift;
             shift += arg.Size;
         }
+        binary += BinaryPrefix << shift;
 
         Log.Debug("{PC}\t{InstructionCode}\t\t{AssemblyLine}\t\t{Arguments}",
-            programCounter, $"{binary + (BinaryPrefix << shift):x4}", line, string.Join(", ", args.Values.Skip(1).Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
-        return binary + (BinaryPrefix << shift);
+            programCounter, $"{binary:x4}", line, string.Join(", ", args.Values.Skip(1).Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
+        return binary;
     }
 }

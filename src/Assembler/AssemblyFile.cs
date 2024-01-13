@@ -61,7 +61,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 continue; // TODO
             }
 
-            if (line.StartsWith("push") || line.StartsWith("add r7, sp")) continue;
+            if (line.StartsWith("push") || line.StartsWith("add r7, sp")) continue; // Skip function prologue
 
             var result = -1;
             foreach (var instruction in Instruction.Instructions)
@@ -69,7 +69,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                 result = instruction.Process(line, programCounter, this);
                 if (result >= 0) break;
             }
-            if (result < 0) throw new NotSupportedException("Couldn't parse line: " + line);
+            if (result < 0) throw new NotSupportedException("Couldn't parse line " + lineCounter + " : " + line);
 
             Log.Verbose("Generated: {0:B16} -> {0:X4}", result);
             if (comments) outputStream.WriteLine($"\n# {line}\n{result:x4}");
