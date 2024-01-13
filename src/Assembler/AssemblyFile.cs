@@ -50,7 +50,7 @@ public record AssemblyFile(FileInfo AssemblyFileInfo)
                         continue; // TODO: Symbols are ignored
                     }
                     var label = line.Substring(1, line.Length - 2);
-                    Log.Debug("{PC}\t\t\t\t{AssemblyLine}\t\t{Label}", programCounter, line, label);
+                    Log.Debug("{PC:d5}\t\t\t\t{AssemblyLine}\t\t{Label}", programCounter, line, label);
                     if (comments) outputStream.WriteLine($"\n# GOTO LABEL '{label}'");
                     continue;
                 }

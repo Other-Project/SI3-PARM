@@ -21,7 +21,7 @@ public record Argument(string Arg, int Size)
     public static IEnumerable<Argument> Arguments { get; } = [Rd, Rm, Rn, Rdm, Rdn, Rt, Imm3, Label8];
 
     public Func<string, string> GetRegex { get; private init; } = pseudoRegex => pseudoRegex.Replace($"{{{Arg}}}", @$"(?<{Arg}>\d+)");
-    public Func<int, int> GetValue { get; private init; } = val => val;
+    private Func<int, int> GetValue { get; init; } = val => val;
 
 
     public int Process(string strValue, int programCounter, AssemblyFile assemblyFile)

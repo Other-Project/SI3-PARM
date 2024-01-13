@@ -103,8 +103,8 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         }
         binary += BinaryPrefix << shift;
 
-        Log.Debug("{PC}\t{InstructionCode}\t\t{AssemblyLine}\t\t{Arguments}",
-            programCounter, $"{binary:x4}", line, string.Join(", ", args.Values.Skip(1).Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
+        Log.Debug("{PC:D5}\t{InstructionCode:x4} ({InstructionCodeBin:b16})\t{AssemblyLine}\t\t{Arguments}",
+            programCounter, binary, binary, line, string.Join(", ", args.Values.Skip(1).Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
         return binary;
     }
 }
