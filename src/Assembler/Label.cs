@@ -7,8 +7,9 @@ public record Label(int Size) : Argument("label", @"(?<label>\S+)", Size, Sign.S
     protected override int Parse()
     {
         if (StringValue == null || AssemblyFile == null || ProgramCounter == null) return 0;
-        var value = AssemblyFile.Labels[StringValue] - ProgramCounter.Value - 3;
-        Log.Verbose("{Label} label found at PC #{Line}, offset {Offset}", StringValue, AssemblyFile.Labels[StringValue], value);
+        if (!AssemblyFile.Labels.TryGetValue(StringValue, out var value)) throw new ArgumentException("Label " + StringValue + " doesn't exist");
+        value -= ProgramCounter.Value + 3;
+        Log.Verbose("{Label} label found at PC #{Line}, offset {Offset}", StringValue, value, value);
         return value;
     }
     public override string ToString() => base.ToString();

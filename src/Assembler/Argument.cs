@@ -3,7 +3,7 @@
 namespace Assembler;
 
 public enum Sign { Signed, Unknown, Unsigned }
-public record Argument(string Name, string Regex, int Size, Sign ValueSign)
+public abstract record Argument(string Name, string Regex, int Size, Sign ValueSign)
 {
     public static Argument Rd { get; } = new Rx("Rd", 3);
     public static Argument Rm { get; } = new Rx("Rm", 3);
