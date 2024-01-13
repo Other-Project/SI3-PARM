@@ -78,7 +78,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
     // ReSharper restore CommentTypo
 
     private string RegexPattern { get; } = Argument.Arguments
-        .Aggregate(RegexPattern, (current, argument) => argument.GetRegex(current)).Replace(" ", " ?");
+        .Aggregate(RegexPattern, (pseudoRegex, argument) => pseudoRegex.Replace($"{{{argument.Name}}}", argument.Regex)).Replace(" ", " ?");
 
     private int BinaryPrefix { get; } = BinaryPrefix;
 
@@ -97,14 +97,14 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         var binary = 0;
         foreach (var arg in BinaryArgs.Reverse())
         {
-            var argValue = args[arg.Arg].Success ? arg.Process(args[arg.Arg].Value, programCounter, assemblyFile) : 0;
-            binary |= argValue << shift;
+            arg.SetValue(args[arg.Name].Value, programCounter, assemblyFile);
+            binary |= arg.BinaryValue << shift;
             shift += arg.Size;
         }
         binary += BinaryPrefix << shift;
 
         Log.Debug("{PC:D5}\t{InstructionCode:x4} ({InstructionCodeBin:b16})\t{AssemblyLine}\t\t{Arguments}",
-            programCounter, binary, binary, line, string.Join(", ", args.Values.Skip(1).Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
+            programCounter, binary, binary, line, string.Join(", ", BinaryArgs.Select(arg => arg.ToString())));
         return binary;
     }
 }
