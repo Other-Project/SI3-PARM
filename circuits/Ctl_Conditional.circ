@@ -96,25 +96,7 @@ end type_architecture;
 </a>
     </tool>
   </lib>
-  <lib desc="#TCL" name="7">
-    <tool name="TclGeneric">
-      <a name="content">library ieee;
-use ieee.std_logic_1164.all;
-
-entity TCL_Generic is
-  port(
-    --Insert input ports below
-    horloge_i  : in  std_logic;                    -- input bit example
-    val_i      : in  std_logic_vector(3 downto 0); -- input vector example
-
-	  --Insert output ports below
-    max_o      : out std_logic;                    -- output bit example
-    cpt_o      : out std_logic_Vector(3 downto 0)  -- output vector example
-  );
-end TCL_Generic;
-</a>
-    </tool>
-  </lib>
+  <lib desc="#TCL" name="7"/>
   <lib desc="#Base" name="8">
     <tool name="Text Tool">
       <a name="font" val="SansSerif plain 12"/>
@@ -270,7 +252,7 @@ end TCL_Generic;
       <a name="appearance" val="classic"/>
       <a name="label" val="V"/>
     </comp>
-    <comp lib="0" loc="(790,160)" name="Bit Extender">
+    <comp lib="0" loc="(790,310)" name="Bit Extender">
       <a name="in_width" val="1"/>
       <a name="out_width" val="11"/>
     </comp>
@@ -327,16 +309,15 @@ end TCL_Generic;
     <comp lib="1" loc="(630,340)" name="AND Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(750,100)" name="OR Gate">
-      <a name="size" val="30"/>
-      <a name="width" val="11"/>
-    </comp>
     <comp lib="1" loc="(840,110)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="width" val="11"/>
     </comp>
     <comp lib="2" loc="(430,530)" name="Multiplexer">
       <a name="select" val="4"/>
+    </comp>
+    <comp lib="2" loc="(750,100)" name="Multiplexer">
+      <a name="width" val="11"/>
     </comp>
     <comp lib="3" loc="(200,710)" name="Comparator">
       <a name="width" val="1"/>
@@ -399,7 +380,9 @@ end TCL_Generic;
     <wire from="(260,120)" to="(270,120)"/>
     <wire from="(260,130)" to="(480,130)"/>
     <wire from="(260,160)" to="(280,160)"/>
-    <wire from="(260,170)" to="(260,340)"/>
+    <wire from="(260,170)" to="(260,190)"/>
+    <wire from="(260,190)" to="(260,340)"/>
+    <wire from="(260,190)" to="(730,190)"/>
     <wire from="(260,340)" to="(520,340)"/>
     <wire from="(270,110)" to="(270,120)"/>
     <wire from="(270,110)" to="(280,110)"/>
@@ -434,15 +417,16 @@ end TCL_Generic;
     <wire from="(700,110)" to="(720,110)"/>
     <wire from="(700,80)" to="(700,90)"/>
     <wire from="(700,90)" to="(720,90)"/>
-    <wire from="(730,160)" to="(730,340)"/>
-    <wire from="(730,160)" to="(750,160)"/>
+    <wire from="(730,120)" to="(730,190)"/>
+    <wire from="(730,310)" to="(730,340)"/>
+    <wire from="(730,310)" to="(750,310)"/>
     <wire from="(730,340)" to="(890,340)"/>
     <wire from="(750,100)" to="(810,100)"/>
-    <wire from="(790,160)" to="(800,160)"/>
+    <wire from="(790,310)" to="(800,310)"/>
     <wire from="(80,570)" to="(140,570)"/>
     <wire from="(80,570)" to="(80,700)"/>
     <wire from="(80,700)" to="(160,700)"/>
-    <wire from="(800,120)" to="(800,160)"/>
+    <wire from="(800,120)" to="(800,310)"/>
     <wire from="(800,120)" to="(810,120)"/>
     <wire from="(840,110)" to="(900,110)"/>
     <wire from="(90,540)" to="(130,540)"/>
