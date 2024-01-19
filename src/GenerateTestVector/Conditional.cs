@@ -41,11 +41,11 @@ public class Conditional(bool enable, ushort instruction, bool n, bool z, bool c
 
     public Conditions Condition => unconditional ? Conditions.AL : (Conditions)((Instruction >> 8) & 0xf);
 
-    private static int GetImm(int instruction, bool unconditional) => instruction & (unconditional ? 0x7FF : 0x00FF);
+    private static long GetImm(uint instruction, bool unconditional) => instruction & (unconditional ? 0x7FF : 0x00FF);
 
 
-    private static readonly bool[] BooleanValues = [false, true];
-    private static readonly int[] ImmTestValues = [0x0000, 0x1111, 0xAAAA, 0xCCCC, 0xffff];
+    public static readonly bool[] BooleanValues = [false, true];
+    public static readonly uint[] ImmTestValues = [0x00000000, 0x11111111, 0xAAAAAAAA, 0xCCCCCCCC, 0xffffffff];
 
     public static IEnumerable<Conditional> GetAllCombinations()
     {

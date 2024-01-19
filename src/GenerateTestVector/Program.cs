@@ -2,7 +2,7 @@
 using System.Reflection;
 using GenerateTestVector;
 
-Type[] components = [typeof(Conditional)];
+Type[] components = [typeof(Conditional), typeof(OpcodeDecoder), typeof(SpAddress)];
 
 foreach (var component in components)
 {
@@ -12,7 +12,7 @@ foreach (var component in components)
         .Where(prop => prop.IsDefined(typeof(SizeAttribute)))
         .Select(prop => (info: prop, size: ((SizeAttribute)prop.GetCustomAttributes(typeof(SizeAttribute), false)[0]).Size)).ToArray();
 
-    file.WriteLine(string.Concat(properties.Select(prop => $" {prop.info.Name}[{prop.size}]" + new string(' ', Math.Max(prop.size - $"{prop.info.Name}[{prop.size}]".Length, 0)))));
+    file.WriteLine(string.Concat(properties.Select(prop => new string(' ', Math.Max(prop.size - $"{prop.info.Name}[{prop.size}]".Length + 1, 1)) + $"{prop.info.Name}[{prop.size}]")));
 
     foreach (var testVector in (IEnumerable)component.GetMethod("GetAllCombinations")?.Invoke(null, null)!)
     {
@@ -23,7 +23,8 @@ foreach (var component in components)
                 {
                     bool bit => bit.ToBinaryChar(),
                     bool[] bits => bits.ToBinaryString(),
-                    ushort word => word.ToBinaryString(),
+                    ushort word => word.ToBinaryString(property.size),
+                    uint word => word.ToBinaryString(property.size),
                     _ => new string('x', property.size)
                 }
             );
