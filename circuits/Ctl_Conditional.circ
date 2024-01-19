@@ -233,7 +233,7 @@ end type_architecture;
       <a name="label" val="imm11"/>
       <a name="width" val="11"/>
     </comp>
-    <comp lib="0" loc="(670,80)" name="Bit Extender">
+    <comp lib="0" loc="(680,80)" name="Bit Extender">
       <a name="out_width" val="11"/>
     </comp>
     <comp lib="0" loc="(70,510)" name="Pin">
@@ -405,10 +405,10 @@ end type_architecture;
     <wire from="(520,330)" to="(600,330)"/>
     <wire from="(520,50)" to="(520,330)"/>
     <wire from="(550,350)" to="(600,350)"/>
-    <wire from="(620,80)" to="(630,80)"/>
+    <wire from="(620,80)" to="(640,80)"/>
     <wire from="(630,120)" to="(700,120)"/>
     <wire from="(630,340)" to="(730,340)"/>
-    <wire from="(670,80)" to="(700,80)"/>
+    <wire from="(680,80)" to="(700,80)"/>
     <wire from="(70,510)" to="(100,510)"/>
     <wire from="(70,540)" to="(90,540)"/>
     <wire from="(70,570)" to="(80,570)"/>

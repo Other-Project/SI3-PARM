@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembler", "Assembler\Asse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembler.Tests", "Assembler.Tests\Assembler.Tests.csproj", "{BED36594-94EF-40F0-A888-05C04B114B22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateTestVector", "GenerateTestVector\GenerateTestVector.csproj", "{42887AD2-18A2-4E40-B0B5-07307C1D5606}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{BED36594-94EF-40F0-A888-05C04B114B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BED36594-94EF-40F0-A888-05C04B114B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BED36594-94EF-40F0-A888-05C04B114B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42887AD2-18A2-4E40-B0B5-07307C1D5606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42887AD2-18A2-4E40-B0B5-07307C1D5606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42887AD2-18A2-4E40-B0B5-07307C1D5606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42887AD2-18A2-4E40-B0B5-07307C1D5606}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
