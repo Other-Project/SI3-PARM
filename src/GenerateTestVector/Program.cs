@@ -2,10 +2,11 @@
 using System.Reflection;
 using GenerateTestVector;
 
-Type[] components = [typeof(Conditional), typeof(OpcodeDecoder), typeof(SpAddress)];
+Type[] components = [typeof(Conditional), typeof(OpcodeDecoder), typeof(SpAddress), typeof(DataProcessing), typeof(ShiftAddSubMove)];
 
 foreach (var component in components)
 {
+    Console.WriteLine(component.Name);
     using var file = File.CreateText($"./{component.Name}.txt");
 
     var properties = component.GetProperties()
@@ -22,9 +23,10 @@ foreach (var component in components)
             file.Write(property.info.GetValue(testVector) switch
                 {
                     bool bit => bit.ToBinaryChar(),
-                    bool[] bits => bits.ToBinaryString(),
+                    bool[] bits => bits.ToBinaryString(property.size),
                     ushort word => word.ToBinaryString(property.size),
                     uint word => word.ToBinaryString(property.size),
+                    Enum enumValue => Convert.ToUInt32(enumValue).ToBinaryString(property.size),
                     _ => new string('x', property.size)
                 }
             );
@@ -32,3 +34,4 @@ foreach (var component in components)
         file.WriteLine();
     }
 }
+Console.WriteLine("Done");

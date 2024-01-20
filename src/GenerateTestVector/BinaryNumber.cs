@@ -10,6 +10,7 @@ public static class BinaryNumber
         return ToBinary(value + (1 << targetLength), targetLength);
     }
     private static int FromBinary(this bool source) => source ? 1 : 0;
+    public static bool[] ToBinary(this int source, int length) => ToBinary((long)source, length);
     private static bool[] ToBinary(this long source, int length)
     {
         var result = new bool[length];
@@ -18,6 +19,7 @@ public static class BinaryNumber
     }
 
     public static char ToBinaryChar(this bool source) => source ? '1' : '0';
+    public static string ToBinaryString(this bool[] source, int length) => new string('0', length - source.Length) + ToBinaryString(source);
     public static string ToBinaryString(this IEnumerable<bool> source) => string.Concat(source.Reverse().Select(bit => bit.ToBinaryChar()));
     public static string ToBinaryString(this ushort source, int length) => ToBinary(source, length).ToBinaryString();
     public static string ToBinaryString(this uint source, int length) => ToBinary(source, length).ToBinaryString();

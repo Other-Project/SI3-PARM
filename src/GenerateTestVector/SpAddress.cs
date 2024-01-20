@@ -29,7 +29,7 @@ public class SpAddress(ushort instruction, bool enable, uint stackPointer)
             from enable in Conditional.BooleanValues
             from offset in Conditional.ImmTestValues
             from sp in Conditional.ImmTestValues
-            select new SpAddress((ushort)((0b1011 << 12) + ((ushort)operation << 7) + (offset & 0b111_1111)), enable, (uint)sp);
+            select new SpAddress((ushort)((0b1011 << 12) + ((ushort)operation << 7) + (offset & 0b111_1111)), enable, sp);
     }
 
     public enum Operations
