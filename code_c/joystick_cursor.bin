@@ -1,0 +1,172 @@
+v2.0 raw
+# Automatically generated the 2024-01-26 09:52:35Z from joystick_cursor.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (2023-2024)
+
+
+# sub sp, #92
+b097
+# APP
+
+# sub sp, #508
+b0ff
+# NO_APP
+# APP
+
+# sub sp, #452
+b0f1
+# NO_APP
+
+# b .LBB0_1
+e7fe
+
+# GOTO LABEL 'LBB0_1'
+
+# ldr r0, [sp, #60]
+980f
+
+# asrs r1, r0, #31
+17c1
+
+# lsrs r1, r1, #30
+0f89
+
+# adds r0, r0, r1
+1840
+
+# asrs r0, r0, #2
+1080
+
+# str r0, [sp, #4]
+9001
+
+# ldr r0, [sp, #64]
+9810
+
+# asrs r1, r0, #31
+17c1
+
+# lsrs r1, r1, #29
+0f49
+
+# adds r0, r0, r1
+1840
+
+# asrs r0, r0, #3
+10c0
+
+# str r0, [sp]
+9000
+
+# b .LBB0_2
+e7fe
+
+# GOTO LABEL 'LBB0_2'
+
+# ldr r1, [sp, #4]
+9901
+
+# movs r0, #7
+2007
+
+# subs r0, r0, r1
+1a40
+
+# ldr r1, [sp]
+9900
+
+# lsls r1, r1, #30
+0789
+
+# lsrs r1, r1, #27
+0ec9
+
+# orrs r0, r1
+4308
+
+# movs r1, #1
+2101
+
+# lsls r1, r0
+4081
+
+# ldr r0, [sp, #36]
+9809
+
+# orrs r0, r1
+4308
+
+# str r0, [sp, #36]
+9009
+
+# b .LBB0_3
+e7fe
+
+# GOTO LABEL 'LBB0_3'
+
+# b .LBB0_4
+e7fe
+
+# GOTO LABEL 'LBB0_4'
+
+# movs r0, #1
+2001
+
+# str r0, [sp, #40]
+900a
+
+# b .LBB0_5
+e7fe
+
+# GOTO LABEL 'LBB0_5'
+
+# b .LBB0_6
+e7fe
+
+# GOTO LABEL 'LBB0_6'
+
+# ldr r1, [sp, #4]
+9901
+
+# movs r0, #7
+2007
+
+# subs r0, r0, r1
+1a40
+
+# ldr r1, [sp]
+9900
+
+# lsls r1, r1, #30
+0789
+
+# lsrs r1, r1, #27
+0ec9
+
+# orrs r0, r1
+4308
+
+# movs r1, #1
+2101
+
+# lsls r1, r0
+4081
+
+# ldr r0, [sp, #36]
+9809
+
+# bics r0, r1
+4388
+
+# str r0, [sp, #36]
+9009
+
+# b .LBB0_7
+e7fe
+
+# GOTO LABEL 'LBB0_7'
+
+# b .LBB0_1
+e7d1
+
+# GOTO LABEL 'Lfunc_end0'
+

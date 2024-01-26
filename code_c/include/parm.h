@@ -42,6 +42,11 @@ volatile unsigned int __temp1, __temp2, __temp3, __temp4, __temp5;
 // Déclenche un point d'arrêt quand passé à 1 -- voir BREAK() dans utils.h
 #define BREAKpin	OUT(5)
 
+// Le bit 0 correspond à enable
+// Les bits 1 à 17 correspondent au volume
+// Les bits 18 à 31 correspondent à la fréquence (Hz)
+#define BUZZER      OUT(6)
+
 // DIP switches
 #define DIP1 		INP(3)
 #define DIP2 		INP(4)
@@ -69,6 +74,9 @@ volatile unsigned int __temp1, __temp2, __temp3, __temp4, __temp5;
 // Utiliser les macros DIV, DIVMOD et MOD définies dans math.h
 // Quotient et modulo de R4 et R5
 #define R4divR5		INP(12)
-#define R4modR5		INP(13)
+#define R4modR5     INP(13)
+
+// Donne un nombre de 0 à 255
+#define SLIDER      INP(14)
 
 #endif
