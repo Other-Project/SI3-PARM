@@ -1,0 +1,102 @@
+#include <parm.h>
+#include <audio.h>
+
+#define WAIT 3
+#define WAIT2 0
+#define SLEEP(time) for (int i = 0; i < time; i++)
+
+void run()
+{
+	BEGIN();
+
+	int vol = SLIDER << 9;
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(165, vol); // E3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(165, vol); // E3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(165, vol); // E3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(165, vol); // E3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(146, vol); // D3
+	SLEEP(WAIT);
+	BZZCLR();
+	SLEEP(WAIT2);
+	BZZSET(130, vol); // C3
+	SLEEP(WAIT);
+	BZZCLR();
+
+	END();
+}

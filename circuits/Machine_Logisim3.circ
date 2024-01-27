@@ -182,13 +182,13 @@ end TCL_Generic;
   <lib desc="#BFH-Praktika" name="9"/>
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#TTL" name="11"/>
-  <lib desc="file#BancDeRegistres.circ" name="12"/>
-  <lib desc="file#Controller.circ" name="13"/>
-  <lib desc="file#ALU.circ" name="14">
+  <lib desc="file#ALU.circ" name="12">
     <tool name="ALU">
       <a name="facing" val="east"/>
     </tool>
   </lib>
+  <lib desc="file#Controller.circ" name="13"/>
+  <lib desc="file#BancDeRegistres.circ" name="14"/>
   <main name="Facade"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
@@ -935,6 +935,11 @@ end TCL_Generic;
       <a name="facing" val="south"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp lib="0" loc="(450,2170)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="north"/>
+      <a name="radix" val="10signed"/>
+    </comp>
     <comp lib="0" loc="(460,100)" name="Clock"/>
     <comp lib="0" loc="(480,1500)" name="Tunnel">
       <a name="facing" val="south"/>
@@ -1315,7 +1320,7 @@ end TCL_Generic;
       <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(760,1240)" name="Tunnel">
-      <a name="label" val="Slider"/>
+      <a name="label" val="Slider_Val"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(760,40)" name="Tunnel">
@@ -1544,7 +1549,7 @@ end TCL_Generic;
     </comp>
     <comp lib="0" loc="(920,1890)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Slider"/>
+      <a name="label" val="Slider_Val"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(920,190)" name="Probe">
@@ -1994,10 +1999,11 @@ end TCL_Generic;
     <wire from="(430,120)" to="(460,120)"/>
     <wire from="(430,2150)" to="(450,2150)"/>
     <wire from="(430,2160)" to="(490,2160)"/>
-    <wire from="(430,2170)" to="(490,2170)"/>
+    <wire from="(430,2170)" to="(450,2170)"/>
     <wire from="(430,980)" to="(430,1010)"/>
     <wire from="(440,1780)" to="(440,1820)"/>
     <wire from="(450,2150)" to="(490,2150)"/>
+    <wire from="(450,2170)" to="(490,2170)"/>
     <wire from="(460,100)" to="(470,100)"/>
     <wire from="(470,1800)" to="(470,1810)"/>
     <wire from="(470,280)" to="(570,280)"/>
@@ -2559,14 +2565,14 @@ end TCL_Generic;
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="12" loc="(990,140)" name="BancRegistre">
-      <a name="label" val="Regs_1"/>
+    <comp lib="12" loc="(1130,720)" name="ALU">
+      <a name="label" val="ALU_1"/>
     </comp>
     <comp lib="13" loc="(540,430)" name="Controller">
       <a name="label" val="Controller_1"/>
     </comp>
-    <comp lib="14" loc="(1130,720)" name="ALU">
-      <a name="label" val="ALU_1"/>
+    <comp lib="14" loc="(990,140)" name="BancRegistre">
+      <a name="label" val="Regs_1"/>
     </comp>
     <comp lib="2" loc="(1100,660)" name="Multiplexer">
       <a name="facing" val="south"/>

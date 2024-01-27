@@ -44,7 +44,7 @@ volatile unsigned int __temp1, __temp2, __temp3, __temp4, __temp5;
 
 // Le bit 0 correspond à enable
 // Les bits 1 à 17 correspondent au volume
-// Les bits 18 à 31 correspondent à la fréquence (Hz)
+// Les bits 18 à 31 correspondent à la fréquence (en Hz)
 #define BUZZER      OUT(6)
 
 // DIP switches

@@ -1,10 +1,10 @@
 v2.0 raw
-# Automatically generated the 2024-01-26 11:45:29Z from buzzer.s
+# Automatically generated the 2024-01-27 14:31:33Z from buzzer.s
 # Program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (2023-2024)
 
 
-# sub sp, #92
-b097
+# sub sp, #96
+b098
 # APP
 
 # sub sp, #508
@@ -21,92 +21,105 @@ e7fe
 
 # GOTO LABEL 'LBB0_1'
 
+# b .LBB0_2
+e7fe
+
+# GOTO LABEL 'LBB0_2'
+
 # movs r0, #8
 2008
 
-# str r0, [sp, #4]
-9001
+# str r0, [sp, #8]
+9002
 
-# ldr r0, [sp, #4]
-9801
+# ldr r0, [sp, #8]
+9802
 
 # lsls r0, r0, #6
 0180
 
-# str r0, [sp, #4]
-9001
+# str r0, [sp, #8]
+9002
 
-# ldr r0, [sp, #4]
-9801
+# ldr r0, [sp, #8]
+9802
 
 # lsls r0, r0, #8
 0200
 
-# str r0, [sp, #4]
-9001
+# str r0, [sp, #8]
+9002
 
-# ldr r0, [sp, #84]
-9815
+# ldr r0, [sp, #88]
+9816
 
 # lsls r0, r0, #9
 0240
 
-# asrs r1, r0, #9
-1241
+# asrs r0, r0, #9
+1240
 
-# ldr r0, [sp, #4]
-9801
+# ldr r1, [sp, #8]
+9902
 
-# adds r0, r0, r1
-1840
+# adds r0, r1, r0
+1808
 
-# str r0, [sp, #4]
-9001
+# str r0, [sp, #8]
+9002
 
-# ldr r0, [sp, #4]
-9801
+# ldr r0, [sp, #8]
+9802
 
 # lsls r0, r0, #8
 0200
 
+# str r0, [sp, #8]
+9002
+
+# ldr r0, [sp, #88]
+9816
+
+# ldr r1, [sp, #8]
+9902
+
+# lsls r1, r1, #2
+0089
+
+# str r1, [sp, #8]
+9102
+
+# ldr r1, [sp, #88]
+9916
+
+# ldr r2, [sp, #8]
+9a02
+
+# adds r2, r2, #1
+1c52
+
+# str r2, [sp, #8]
+9202
+
+# ldr r2, [sp, #8]
+9a02
+
+# str r2, [sp, #56]
+920e
+
 # str r0, [sp, #4]
 9001
 
-# ldr r0, [sp, #84]
-9815
+# str r1, [sp]
+9100
 
-# ldr r0, [sp, #4]
-9801
+# b .LBB0_3
+e7fe
 
-# lsls r0, r0, #2
-0080
-
-# str r0, [sp, #4]
-9001
-
-# ldr r0, [sp, #84]
-9815
-
-# ldr r0, [sp, #4]
-9801
-
-# adds r0, r0, #1
-1c40
-
-# str r0, [sp, #4]
-9001
-
-# ldr r0, [sp, #4]
-9801
-
-# str r0, [sp, #52]
-900d
-
-# str r0, [sp]
-9000
+# GOTO LABEL 'LBB0_3'
 
 # b .LBB0_1
-e7e1
+e7de
 
 # GOTO LABEL 'Lfunc_end0'
 

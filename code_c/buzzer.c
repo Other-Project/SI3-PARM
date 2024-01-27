@@ -3,9 +3,10 @@
 
 void run()
 {
-    BEGIN();
-    while (1) {
-       BZZSET(512,SLIDER << 9);
-    }
-    END();
+	BEGIN();
+	while (1)
+	{
+		BZZSET(512, SLIDER << 9);
+	}
+	END();
 }
