@@ -49,10 +49,10 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         // A5.2.4 - 100xxx - Load/store single data item
         new Instruction("STR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
         new Instruction("LDR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),
-        
+
         // A7.7.5 - 10101x - Generate SP-relative address
-        new Instruction("ADD r{Rd}, SP, #{imm}", 0b1010_1, Argument.Rd, Argument.Imm8),
-        
+        new Instruction("ADD r{Rd}, SP, #{imm}", 0b1010_1, Argument.Rd, Argument.Imm8Shift2),
+
         // A5.2.5 - 1011xx - Miscellaneous 16-bit instructions
         new Instruction("ADD SP(?:, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
         new Instruction("SUB SP(?:, SP)?, #{imm}", 0b1011_00001, Argument.Imm7Shift2),
