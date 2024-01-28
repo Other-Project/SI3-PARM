@@ -47,6 +47,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new Instruction("MOVS r{Rd}, r{Rm}", 0b00_000, Argument.Imm5, Argument.Rm, Argument.Rd), // LSLS <Rd>,<Rm>,#<imm5> with imm5=0
 
         // A5.2.4 - 100xxx - Load/store single data item
+        new Instruction("STR r{Rt}, \\[r{Rn}, r{Rm}]", 0b0101_000, Argument.Rm, Argument.Rn, Argument.Rt),
         new Instruction("LDR r{Rt}, \\[r{Rn}, r{Rm}]", 0b0101_100, Argument.Rm, Argument.Rn, Argument.Rt),
         new Instruction("STR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_0, Argument.Rt, Argument.Imm8Shift2),
         new Instruction("LDR r{Rt}, \\[SP(?:, #{imm})?]", 0b1001_1, Argument.Rt, Argument.Imm8Shift2),

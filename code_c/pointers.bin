@@ -1,0 +1,249 @@
+v2.0 raw
+# Automatically generated the 2024-01-28 15:41:12Z from pointers.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (2023-2024)
+
+
+# sub sp, #116
+b09d
+# APP
+
+# sub sp, #508
+b0ff
+# NO_APP
+# APP
+
+# sub sp, #452
+b0f1
+# NO_APP
+
+# movs r0, #1
+2001
+
+# str r0, [sp, #12]
+9003
+
+# movs r0, #3
+2003
+
+# str r0, [sp, #16]
+9004
+
+# movs r0, #6
+2006
+
+# str r0, [sp, #20]
+9005
+
+# movs r0, #9
+2009
+
+# str r0, [sp, #24]
+9006
+
+# movs r0, #10
+200a
+
+# str r0, [sp, #28]
+9007
+
+# movs r0, #0
+2000
+
+# str r0, [sp, #8]
+9002
+
+# b .LBB0_1
+e7fe
+
+# GOTO LABEL 'LBB0_1'
+
+# ldr r0, [sp, #8]
+9802
+
+# cmp r0, #4
+2804
+
+# bgt .LBB0_4
+dc09
+
+# b .LBB0_2
+e7fe
+
+# GOTO LABEL 'LBB0_2'
+
+# ldr r0, [sp, #8]
+9802
+
+# lsls r0, r0, #2
+0080
+
+# add r1, sp, #12
+a903
+
+# ldr r0, [r1, r0]
+5808
+
+# str r0, [sp, #56]
+900e
+
+# b .LBB0_3
+e7fe
+
+# GOTO LABEL 'LBB0_3'
+
+# ldr r0, [sp, #8]
+9802
+
+# adds r0, r0, #1
+1c40
+
+# str r0, [sp, #8]
+9002
+
+# b .LBB0_1
+e7f0
+
+# GOTO LABEL 'LBB0_4'
+
+# movs r0, #0
+2000
+
+# str r0, [sp, #4]
+9001
+
+# b .LBB0_5
+e7fe
+
+# GOTO LABEL 'LBB0_5'
+
+# ldr r0, [sp, #4]
+9801
+
+# cmp r0, #4
+2804
+
+# bgt .LBB0_8
+dc0c
+
+# b .LBB0_6
+e7fe
+
+# GOTO LABEL 'LBB0_6'
+
+# ldr r0, [sp, #4]
+9801
+
+# lsls r1, r0, #2
+0081
+
+# add r2, sp, #12
+aa03
+
+# str r0, [r2, r1]
+5050
+
+# ldr r0, [sp, #4]
+9801
+
+# lsls r0, r0, #2
+0080
+
+# ldr r0, [r2, r0]
+5810
+
+# str r0, [sp, #56]
+900e
+
+# b .LBB0_7
+e7fe
+
+# GOTO LABEL 'LBB0_7'
+
+# ldr r0, [sp, #4]
+9801
+
+# adds r0, r0, #1
+1c40
+
+# str r0, [sp, #4]
+9001
+
+# b .LBB0_5
+e7ed
+
+# GOTO LABEL 'LBB0_8'
+
+# movs r0, #0
+2000
+
+# str r0, [sp]
+9000
+
+# b .LBB0_9
+e7fe
+
+# GOTO LABEL 'LBB0_9'
+
+# ldr r0, [sp]
+9800
+
+# cmp r0, #4
+2804
+
+# bgt .LBB0_12
+dc09
+
+# b .LBB0_10
+e7fe
+
+# GOTO LABEL 'LBB0_10'
+
+# ldr r0, [sp]
+9800
+
+# lsls r0, r0, #2
+0080
+
+# add r1, sp, #12
+a903
+
+# ldr r0, [r1, r0]
+5808
+
+# str r0, [sp, #56]
+900e
+
+# b .LBB0_11
+e7fe
+
+# GOTO LABEL 'LBB0_11'
+
+# ldr r0, [sp]
+9800
+
+# adds r0, r0, #1
+1c40
+
+# str r0, [sp]
+9000
+
+# b .LBB0_9
+e7f0
+
+# GOTO LABEL 'LBB0_12'
+
+# b .LBB0_13
+e7fe
+
+# GOTO LABEL 'LBB0_13'
+
+# b .LBB0_14
+e7fe
+
+# GOTO LABEL 'LBB0_14'
+
+# b .LBB0_14
+e7fd
+
+# GOTO LABEL 'Lfunc_end0'
+
