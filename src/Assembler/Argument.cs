@@ -13,6 +13,7 @@ public abstract record Argument(string Name, string Regex, int Size, Sign ValueS
     public static Argument Rt { get; } = new Rx("Rt", 3);
     public static Argument Imm3 { get; } = new Imm(3);
     public static Argument Imm5 { get; } = new Imm(5);
+    public static Argument Imm5Shift2 { get; } = new Imm(5) { GetValue = val => val >> 2 };
     public static Argument Imm7Shift2 { get; } = new Imm(7) { GetValue = val => val >> 2 };
     public static Argument Imm8 { get; } = new Imm(8);
     public static Argument Imm8Shift2 { get; } = new Imm(8) { GetValue = val => val >> 2 };
