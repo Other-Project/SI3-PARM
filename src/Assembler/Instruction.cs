@@ -55,7 +55,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new Instruction("LDR r{Rt}, \\[SP(?:, #{imm})?]", 0b100_11, Argument.Rt, Argument.Imm8Shift2),
 
         // A7.7.5 - 10101x - Generate SP-relative address
-        new Instruction("ADD r{Rd}, SP, #{imm}", 0b1010_1, Argument.Rd, Argument.Imm8),
+        new Instruction("ADD r{Rd}, SP, #{imm}", 0b1010_1, Argument.Rd, Argument.Imm8Shift2),
 
         // A5.2.5 - 1011xx - Miscellaneous 16-bit instructions
         new Instruction("ADD SP(?:, SP)?, #{imm}", 0b1011_00000, Argument.Imm7Shift2),
