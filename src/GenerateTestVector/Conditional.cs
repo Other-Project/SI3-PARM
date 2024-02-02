@@ -45,7 +45,7 @@ public class Conditional(bool enable, ushort instruction, bool n, bool z, bool c
 
 
     public static readonly bool[] BooleanValues = [false, true];
-    public static readonly uint[] ImmTestValues = [0x00000000, 0x11111111, 0xAAAAAAAA, 0xCCCCCCCC, 0xffffffff];
+    public static readonly uint[] ImmTestValues = [0x00000000, 0x11111111, 0x77777777, 0xAAAAAAAA, 0xCCCCCCCC, 0xFFFFFFFF];
 
     public static IEnumerable<Conditional> GetAllCombinations()
     {

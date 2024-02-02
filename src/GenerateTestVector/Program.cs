@@ -3,10 +3,12 @@ using System.Reflection;
 using GenerateTestVector;
 
 Type[] components = [typeof(Alu), typeof(Conditional), typeof(OpcodeDecoder), typeof(SpAddress), typeof(DataProcessing), typeof(ShiftAddSubMove)];
+var totalVectors = 0u;
 
 foreach (var component in components)
 {
-    Console.WriteLine(component.Name);
+    var vectors = 0u;
+    Console.Write(component.Name);
     using var file = File.CreateText($"./{component.Name}.txt");
 
     var properties = component.GetProperties()
@@ -32,6 +34,9 @@ foreach (var component in components)
             );
         }
         file.WriteLine();
+        vectors++;
     }
+    Console.WriteLine(" ({0} vectors)", vectors);
+    totalVectors += vectors;
 }
-Console.WriteLine("Done");
+Console.WriteLine("Done ({0} vectors)", totalVectors);
