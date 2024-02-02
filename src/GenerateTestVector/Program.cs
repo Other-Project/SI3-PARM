@@ -2,7 +2,7 @@
 using System.Reflection;
 using GenerateTestVector;
 
-Type[] components = [typeof(Conditional), typeof(OpcodeDecoder), typeof(SpAddress), typeof(DataProcessing), typeof(ShiftAddSubMove)];
+Type[] components = [typeof(Alu), typeof(Conditional), typeof(OpcodeDecoder), typeof(SpAddress), typeof(DataProcessing), typeof(ShiftAddSubMove)];
 
 foreach (var component in components)
 {

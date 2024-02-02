@@ -9,7 +9,7 @@ public static class BinaryNumber
         var value = raw.SkipLast(1).Select((a, i) => a.FromBinary() * (1 << i)).Sum() - raw[^1].FromBinary() * (1 << (raw.Length - 1));
         return ToBinary(value + (1 << targetLength), targetLength);
     }
-    private static int FromBinary(this bool source) => source ? 1 : 0;
+    public static uint FromBinary(this bool source) => source ? 1u : 0u;
     public static bool[] ToBinary(this int source, int length) => ToBinary((long)source, length);
     private static bool[] ToBinary(this long source, int length)
     {
