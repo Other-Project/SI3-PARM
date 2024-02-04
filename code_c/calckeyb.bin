@@ -1,5 +1,5 @@
 v2.0 raw
-# Automatically generated the 2024-01-13 11:56:40Z from calckeyb.s
+# Automatically generated the 2024-02-04 14:46:46Z from calckeyb.s
 # Program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (2023-2024)
 
 
@@ -183,17 +183,17 @@ e7fe
 
 # GOTO LABEL 'LBB0_19'
 
-# ldr r1, [sp, #48]
-990c
+# ldr r0, [sp, #48]
+980c
 
-# movs r0, #10
-200a
+# movs r1, #10
+210a
 
-# muls r0, r1, r0
-4348
+# muls r1, r0, r1
+4341
 
-# str r0, [sp, #48]
-900c
+# str r1, [sp, #48]
+910c
 
 # ldr r0, [sp, #44]
 980b
@@ -201,8 +201,8 @@ e7fe
 # ldr r1, [sp, #48]
 990c
 
-# adds r0, r0, r1
-1840
+# adds r0, r1, r0
+1808
 
 # subs r0, #48
 3830
@@ -410,17 +410,17 @@ e7fe
 
 # GOTO LABEL 'LBB0_41'
 
-# ldr r1, [sp, #32]
-9908
+# ldr r0, [sp, #32]
+9808
 
-# movs r0, #10
-200a
+# movs r1, #10
+210a
 
-# muls r0, r1, r0
-4348
+# muls r1, r0, r1
+4341
 
-# str r0, [sp, #32]
-9008
+# str r1, [sp, #32]
+9108
 
 # ldr r0, [sp, #28]
 9807
@@ -428,8 +428,8 @@ e7fe
 # ldr r1, [sp, #32]
 9908
 
-# adds r0, r0, r1
-1840
+# adds r0, r1, r0
+1808
 
 # subs r0, #48
 3830
@@ -722,11 +722,11 @@ e7fe
 # ldr r0, [sp, #16]
 9804
 
-# str r0, [sp]
-9000
-
 # cmp r0, #37
 2825
+
+# str r0, [sp]
+9000
 
 # beq .LBB0_92
 d033
@@ -868,17 +868,17 @@ e025
 
 # GOTO LABEL 'LBB0_90'
 
-# ldr r1, [sp, #56]
-990e
+# ldr r0, [sp, #56]
+980e
 
-# ldr r0, [sp, #52]
-980d
+# ldr r1, [sp, #52]
+990d
 
-# muls r0, r1, r0
-4348
+# muls r1, r0, r1
+4341
 
-# str r0, [sp, #84]
-9015
+# str r1, [sp, #84]
+9115
 
 # b .LBB0_97
 e020
@@ -1123,8 +1123,8 @@ e033
 # cmp r0, #0
 2800
 
-# bpl .LBB0_116
-d509
+# bge .LBB0_116
+da09
 
 # b .LBB0_113
 e7fe

@@ -32,10 +32,12 @@ run:
 	.pad	#188
 	sub	sp, #188
 	@APP
-	sub	sp, #508
+	sub sp, #508
+	.code	16
 	@NO_APP
 	@APP
-	sub	sp, #452
+	sub sp, #452
+	.code	16
 	@NO_APP
 	movs	r0, #7
 	lsls	r0, r0, #15
@@ -57,8 +59,9 @@ run:
 	str	r0, [sp, #16]
 	ldr	r2, [sp, #16]
 	@APP
-	movs	r0, r2
-	lsrs	r1, r0, #16
+	movs r0, r2		
+lsrs r1, r0, #16	  
+	.code	16
 	@NO_APP
 	str	r1, [sp, #84]
 	ldr	r0, [sp, #84]
@@ -105,12 +108,13 @@ run:
 .LBB0_9:
 	ldr	r0, [sp, #88]
 	@APP
-	lsls	r2, r0, #16
-	lsrs	r2, r2, #16
-	movs	r1, #100
-	muls	r2, r1, r2
-	muls	r2, r1, r2
-	lsrs	r3, r2, #16
+	lsls r2, r0, #16	
+lsrs r2, r2, #16		
+movs r1, #100			
+muls r2, r1, r2		
+muls r2, r1, r2		
+lsrs r3, r2, #16	  
+	.code	16
 	@NO_APP
 	str	r3, [sp, #84]
 	ldr	r0, [sp, #84]
@@ -197,8 +201,9 @@ run:
 	str	r0, [sp, #12]
 	ldr	r2, [sp, #12]
 	@APP
-	movs	r0, r2
-	lsrs	r1, r0, #16
+	movs r0, r2		
+lsrs r1, r0, #16	  
+	.code	16
 	@NO_APP
 	str	r1, [sp, #76]
 	ldr	r0, [sp, #76]
@@ -245,12 +250,13 @@ run:
 .LBB0_39:
 	ldr	r0, [sp, #80]
 	@APP
-	lsls	r2, r0, #16
-	lsrs	r2, r2, #16
-	movs	r1, #100
-	muls	r2, r1, r2
-	muls	r2, r1, r2
-	lsrs	r3, r2, #16
+	lsls r2, r0, #16	
+lsrs r2, r2, #16		
+movs r1, #100			
+muls r2, r1, r2		
+muls r2, r1, r2		
+lsrs r3, r2, #16	  
+	.code	16
 	@NO_APP
 	str	r3, [sp, #76]
 	ldr	r0, [sp, #76]
@@ -327,8 +333,9 @@ run:
 	str	r0, [sp, #8]
 	ldr	r2, [sp, #8]
 	@APP
-	movs	r0, r2
-	lsrs	r1, r0, #16
+	movs r0, r2		
+lsrs r1, r0, #16	  
+	.code	16
 	@NO_APP
 	str	r1, [sp, #68]
 	ldr	r0, [sp, #68]
@@ -375,12 +382,13 @@ run:
 .LBB0_65:
 	ldr	r0, [sp, #72]
 	@APP
-	lsls	r2, r0, #16
-	lsrs	r2, r2, #16
-	movs	r1, #100
-	muls	r2, r1, r2
-	muls	r2, r1, r2
-	lsrs	r3, r2, #16
+	lsls r2, r0, #16	
+lsrs r2, r2, #16		
+movs r1, #100			
+muls r2, r1, r2		
+muls r2, r1, r2		
+lsrs r3, r2, #16	  
+	.code	16
 	@NO_APP
 	str	r3, [sp, #68]
 	ldr	r0, [sp, #68]
@@ -544,8 +552,9 @@ run:
 	str	r0, [sp, #4]
 	ldr	r2, [sp, #4]
 	@APP
-	movs	r0, r2
-	lsrs	r1, r0, #16
+	movs r0, r2		
+lsrs r1, r0, #16	  
+	.code	16
 	@NO_APP
 	str	r1, [sp, #36]
 	ldr	r0, [sp, #36]
@@ -592,12 +601,13 @@ run:
 .LBB0_112:
 	ldr	r0, [sp, #40]
 	@APP
-	lsls	r2, r0, #16
-	lsrs	r2, r2, #16
-	movs	r1, #100
-	muls	r2, r1, r2
-	muls	r2, r1, r2
-	lsrs	r3, r2, #16
+	lsls r2, r0, #16	
+lsrs r2, r2, #16		
+movs r1, #100			
+muls r2, r1, r2		
+muls r2, r1, r2		
+lsrs r3, r2, #16	  
+	.code	16
 	@NO_APP
 	str	r3, [sp, #36]
 	ldr	r0, [sp, #36]
@@ -715,8 +725,9 @@ run:
 	lsls	r0, r0, #8
 	ldr	r1, [sp, #32]
 	@APP
-	movs	r4, r0
-	movs	r5, r1
+	movs r4, r0
+movs r5, r1
+	.code	16
 	@NO_APP
 	ldr	r0, [sp, #172]
 	str	r0, [sp, #24]
@@ -727,8 +738,9 @@ run:
 	str	r0, [sp]
 	ldr	r4, [sp]
 	@APP
-	movs	r0, r4
-	lsrs	r1, r0, #16
+	movs r0, r4		
+lsrs r1, r0, #16	  
+	.code	16
 	@NO_APP
 	str	r1, [sp, #20]
 	ldr	r0, [sp, #20]
@@ -775,12 +787,13 @@ run:
 .LBB0_154:
 	ldr	r0, [sp, #28]
 	@APP
-	lsls	r2, r0, #16
-	lsrs	r2, r2, #16
-	movs	r1, #100
-	muls	r2, r1, r2
-	muls	r2, r1, r2
-	lsrs	r3, r2, #16
+	lsls r2, r0, #16	
+lsrs r2, r2, #16		
+movs r1, #100			
+muls r2, r1, r2		
+muls r2, r1, r2		
+lsrs r3, r2, #16	  
+	.code	16
 	@NO_APP
 	str	r3, [sp, #20]
 	ldr	r0, [sp, #20]
@@ -844,7 +857,6 @@ run:
 	.fnend
 
 
-	.ident	"clang version 8.0.1-9 (tags/RELEASE_801/final)"
+	.ident	"clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)"
 	.section	".note.GNU-stack","",%progbits
-	.addrsig
 	.eabi_attribute	30, 6

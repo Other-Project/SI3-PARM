@@ -9,7 +9,7 @@
 	.eabi_attribute	34, 0
 	.eabi_attribute	17, 1
 	.eabi_attribute	20, 1
-	.eabi_attribute	21, 0
+	.eabi_attribute	21, 1
 	.eabi_attribute	23, 3
 	.eabi_attribute	24, 1
 	.eabi_attribute	25, 1
@@ -28,10 +28,12 @@ run:
 	.pad	#92
 	sub	sp, #92
 	@APP
-	sub	sp, #508
+	sub sp, #508
+	.code	16
 	@NO_APP
 	@APP
-	sub	sp, #452
+	sub sp, #452
+	.code	16
 	@NO_APP
 	b	.LBB0_1
 .LBB0_1:
@@ -49,12 +51,13 @@ run:
 	str	r0, [sp]
 	b	.LBB0_2
 .LBB0_2:
-	ldr	r1, [sp, #4]
-	movs	r0, #7
-	subs	r0, r0, r1
+	ldr	r0, [sp, #4]
+	movs	r1, #7
+	subs	r0, r1, r0
 	ldr	r1, [sp]
-	lsls	r1, r1, #30
-	lsrs	r1, r1, #27
+	movs	r2, #3
+	ands	r1, r2
+	lsls	r1, r1, #3
 	orrs	r0, r1
 	movs	r1, #1
 	lsls	r1, r0
@@ -71,12 +74,13 @@ run:
 .LBB0_5:
 	b	.LBB0_6
 .LBB0_6:
-	ldr	r1, [sp, #4]
-	movs	r0, #7
-	subs	r0, r0, r1
+	ldr	r0, [sp, #4]
+	movs	r1, #7
+	subs	r0, r1, r0
 	ldr	r1, [sp]
-	lsls	r1, r1, #30
-	lsrs	r1, r1, #27
+	movs	r2, #3
+	ands	r1, r2
+	lsls	r1, r1, #3
 	orrs	r0, r1
 	movs	r1, #1
 	lsls	r1, r0
@@ -91,7 +95,7 @@ run:
 	.cantunwind
 	.fnend
 
-	.ident	"Ubuntu clang version 14.0.0-1ubuntu1.1"
+
+	.ident	"clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)"
 	.section	".note.GNU-stack","",%progbits
-	.addrsig
 	.eabi_attribute	30, 6

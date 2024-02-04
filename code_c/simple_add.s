@@ -28,10 +28,12 @@ run:
 	.pad	#96
 	sub	sp, #96
 	@APP
-	sub	sp, #508
+	sub sp, #508
+	.code	16
 	@NO_APP
 	@APP
-	sub	sp, #452
+	sub sp, #452
+	.code	16
 	@NO_APP
 	movs	r0, #1
 	str	r0, [sp, #8]
@@ -54,7 +56,6 @@ run:
 	.fnend
 
 
-	.ident	"clang version 8.0.1-9 (tags/RELEASE_801/final)"
+	.ident	"clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)"
 	.section	".note.GNU-stack","",%progbits
-	.addrsig
 	.eabi_attribute	30, 6

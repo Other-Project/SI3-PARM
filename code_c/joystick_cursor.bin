@@ -1,5 +1,5 @@
 v2.0 raw
-# Automatically generated the 2024-01-26 09:52:35Z from joystick_cursor.s
+# Automatically generated the 2024-02-04 14:46:47Z from joystick_cursor.s
 # Program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (2023-2024)
 
 
@@ -62,23 +62,26 @@ e7fe
 
 # GOTO LABEL 'LBB0_2'
 
-# ldr r1, [sp, #4]
-9901
+# ldr r0, [sp, #4]
+9801
 
-# movs r0, #7
-2007
+# movs r1, #7
+2107
 
-# subs r0, r0, r1
-1a40
+# subs r0, r1, r0
+1a08
 
 # ldr r1, [sp]
 9900
 
-# lsls r1, r1, #30
-0789
+# movs r2, #3
+2203
 
-# lsrs r1, r1, #27
-0ec9
+# ands r1, r2
+4011
+
+# lsls r1, r1, #3
+00c9
 
 # orrs r0, r1
 4308
@@ -124,23 +127,26 @@ e7fe
 
 # GOTO LABEL 'LBB0_6'
 
-# ldr r1, [sp, #4]
-9901
+# ldr r0, [sp, #4]
+9801
 
-# movs r0, #7
-2007
+# movs r1, #7
+2107
 
-# subs r0, r0, r1
-1a40
+# subs r0, r1, r0
+1a08
 
 # ldr r1, [sp]
 9900
 
-# lsls r1, r1, #30
-0789
+# movs r2, #3
+2203
 
-# lsrs r1, r1, #27
-0ec9
+# ands r1, r2
+4011
+
+# lsls r1, r1, #3
+00c9
 
 # orrs r0, r1
 4308
@@ -166,7 +172,7 @@ e7fe
 # GOTO LABEL 'LBB0_7'
 
 # b .LBB0_1
-e7d1
+e7cf
 
 # GOTO LABEL 'Lfunc_end0'
 

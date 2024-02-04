@@ -1,2 +1,309 @@
 v2.0 raw
-b095 b0ff b0f1 e7fe e7fe e7fe e7fe e7fe e7fe e7fe e7fe e7fe e7fe e7fe 2050 9005 e7fe e7fe 2072 9005 e7fe e7fe e7fe 206f 9005 e7fe e7fe e7fe 206a 9005 e7fe e7fe e7fe 2065 9005 e7fe e7fe e7fe 2074 9005 e7fe e7fe e7fe 2020 9005 e7fe e7fe e7fe 2050 9005 e7fe e7fe e7fe 2041 9005 e7fe e7fe e7fe 2052 9005 e7fe e7fe e7fe 204d 9005 e7fe e7fe e7fe e7fe e7fd 
+# Automatically generated the 2024-02-04 14:46:49Z from tty.s
+# Program made by Evan GALLI, Alban FALCOZ and Theo LASSAUNIERE (2023-2024)
+
+
+# sub sp, #84
+b095
+# APP
+
+# sub sp, #508
+b0ff
+# NO_APP
+# APP
+
+# sub sp, #452
+b0f1
+# NO_APP
+
+# b .LBB0_1
+e7fe
+
+# GOTO LABEL 'LBB0_1'
+
+# b .LBB0_2
+e7fe
+
+# GOTO LABEL 'LBB0_2'
+
+# b .LBB0_3
+e7fe
+
+# GOTO LABEL 'LBB0_3'
+
+# b .LBB0_4
+e7fe
+
+# GOTO LABEL 'LBB0_4'
+
+# b .LBB0_5
+e7fe
+
+# GOTO LABEL 'LBB0_5'
+
+# b .LBB0_6
+e7fe
+
+# GOTO LABEL 'LBB0_6'
+
+# b .LBB0_7
+e7fe
+
+# GOTO LABEL 'LBB0_7'
+
+# b .LBB0_8
+e7fe
+
+# GOTO LABEL 'LBB0_8'
+
+# b .LBB0_9
+e7fe
+
+# GOTO LABEL 'LBB0_9'
+
+# b .LBB0_10
+e7fe
+
+# GOTO LABEL 'LBB0_10'
+
+# b .LBB0_11
+e7fe
+
+# GOTO LABEL 'LBB0_11'
+
+# movs r0, #80
+2050
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_12
+e7fe
+
+# GOTO LABEL 'LBB0_12'
+
+# b .LBB0_13
+e7fe
+
+# GOTO LABEL 'LBB0_13'
+
+# movs r0, #114
+2072
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_14
+e7fe
+
+# GOTO LABEL 'LBB0_14'
+
+# b .LBB0_15
+e7fe
+
+# GOTO LABEL 'LBB0_15'
+
+# b .LBB0_16
+e7fe
+
+# GOTO LABEL 'LBB0_16'
+
+# movs r0, #111
+206f
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_17
+e7fe
+
+# GOTO LABEL 'LBB0_17'
+
+# b .LBB0_18
+e7fe
+
+# GOTO LABEL 'LBB0_18'
+
+# b .LBB0_19
+e7fe
+
+# GOTO LABEL 'LBB0_19'
+
+# movs r0, #106
+206a
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_20
+e7fe
+
+# GOTO LABEL 'LBB0_20'
+
+# b .LBB0_21
+e7fe
+
+# GOTO LABEL 'LBB0_21'
+
+# b .LBB0_22
+e7fe
+
+# GOTO LABEL 'LBB0_22'
+
+# movs r0, #101
+2065
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_23
+e7fe
+
+# GOTO LABEL 'LBB0_23'
+
+# b .LBB0_24
+e7fe
+
+# GOTO LABEL 'LBB0_24'
+
+# b .LBB0_25
+e7fe
+
+# GOTO LABEL 'LBB0_25'
+
+# movs r0, #116
+2074
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_26
+e7fe
+
+# GOTO LABEL 'LBB0_26'
+
+# b .LBB0_27
+e7fe
+
+# GOTO LABEL 'LBB0_27'
+
+# b .LBB0_28
+e7fe
+
+# GOTO LABEL 'LBB0_28'
+
+# movs r0, #32
+2020
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_29
+e7fe
+
+# GOTO LABEL 'LBB0_29'
+
+# b .LBB0_30
+e7fe
+
+# GOTO LABEL 'LBB0_30'
+
+# b .LBB0_31
+e7fe
+
+# GOTO LABEL 'LBB0_31'
+
+# movs r0, #80
+2050
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_32
+e7fe
+
+# GOTO LABEL 'LBB0_32'
+
+# b .LBB0_33
+e7fe
+
+# GOTO LABEL 'LBB0_33'
+
+# b .LBB0_34
+e7fe
+
+# GOTO LABEL 'LBB0_34'
+
+# movs r0, #65
+2041
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_35
+e7fe
+
+# GOTO LABEL 'LBB0_35'
+
+# b .LBB0_36
+e7fe
+
+# GOTO LABEL 'LBB0_36'
+
+# b .LBB0_37
+e7fe
+
+# GOTO LABEL 'LBB0_37'
+
+# movs r0, #82
+2052
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_38
+e7fe
+
+# GOTO LABEL 'LBB0_38'
+
+# b .LBB0_39
+e7fe
+
+# GOTO LABEL 'LBB0_39'
+
+# b .LBB0_40
+e7fe
+
+# GOTO LABEL 'LBB0_40'
+
+# movs r0, #77
+204d
+
+# str r0, [sp, #20]
+9005
+
+# b .LBB0_41
+e7fe
+
+# GOTO LABEL 'LBB0_41'
+
+# b .LBB0_42
+e7fe
+
+# GOTO LABEL 'LBB0_42'
+
+# b .LBB0_43
+e7fe
+
+# GOTO LABEL 'LBB0_43'
+
+# b .LBB0_44
+e7fe
+
+# GOTO LABEL 'LBB0_44'
+
+# b .LBB0_44
+e7fd
+
+# GOTO LABEL 'Lfunc_end0'
+
