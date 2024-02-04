@@ -28,7 +28,7 @@ typedef unsigned int fixed_t;
 	fixed_t tmp;\
 	asm(\
 		"movs r0, %[val]		\n"\
-		"lsrs %[res], r0, 16	  " : [res] "=&r" (tmp) : [val] "r" (num) : "r0");\
+		"lsrs %[res], r0, #16	  " : [res] "=&r" (tmp) : [val] "r" (num) : "r0");\
 	RES = tmp;\
 	PRINTRES_FIX(5);\
 	asm(\
