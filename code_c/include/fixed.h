@@ -35,8 +35,8 @@ typedef unsigned int fixed_t;
 		"lsls r2, %[val], #16	\n"\
 		"lsrs r2, r2, #16		\n"\
 		"movs r1, #100			\n"\
-		"muls r2, r2, r1		\n"\
-		"muls r2, r2, r1		\n"\
+		"muls r2, r1, r2		\n"\
+		"muls r2, r1, r2		\n"\
 		"lsrs %[res], r2, #16	  " : [res] "=&r" (tmp) : [val] "r" (num) : "r2", "r1");\
 	RES = tmp;\
 	PUTCHAR('.');\
