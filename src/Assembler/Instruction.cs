@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Serilog;
 
@@ -97,6 +98,12 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         var regex = Regex.Match(line, $@"^\s?{RegexPattern}\s?$", RegexOptions.IgnoreCase);
         if (!regex.Success) return -1;
         var args = regex.Groups;
+        foreach (var group in args.Values)
+        {
+            var distinctCaptures = group.Captures.Select(c => c.Value).Distinct().ToList();
+            if (distinctCaptures.Count > 1)
+                throw new ConstraintException($"Different values for {group.Name} have been found : {string.Join(", ", distinctCaptures)}");
+        }
         Log.Verbose("{Instruction} instruction detected (PC #{PC}), parsed {Arguments}", RegexPattern, programCounter,
             string.Join(", ", args.Values.Select(arg => arg.Name + ":\"" + arg.Value + "\"")));
 
