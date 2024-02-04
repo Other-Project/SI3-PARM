@@ -35,7 +35,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
         new Instruction("SBCS r{Rdn}, r{Rm}", 0b010000_0110, Argument.Rm, Argument.Rdn),
         new Instruction("RORS r{Rdn}, r{Rm}", 0b010000_0111, Argument.Rm, Argument.Rdn),
         new Instruction("TST r{Rn}, r{Rm}", 0b010000_1000, Argument.Rm, Argument.Rn),
-        new Instruction("RSBS r{Rd}, r{Rn}", 0b010000_1001, Argument.Rn, Argument.Rd),
+        new Instruction("RSBS r{Rd}, r{Rn}, #0", 0b010000_1001, Argument.Rn, Argument.Rd),
         new Instruction("CMP r{Rn}, r{Rm}", 0b010000_1010, Argument.Rm, Argument.Rn),
         new Instruction("CMN r{Rn}, r{Rm}", 0b010000_1011, Argument.Rm, Argument.Rn),
         new Instruction("ORRS r{Rdn}, r{Rm}", 0b010000_1100, Argument.Rm, Argument.Rdn),
@@ -85,7 +85,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
     // ReSharper restore CommentTypo
 
     private string RegexPattern { get; } = Argument.Arguments
-        .Aggregate(RegexPattern, (pseudoRegex, argument) => pseudoRegex.Replace($"{{{argument.Name}}}", argument.Regex)).Replace(" ", " ?");
+        .Aggregate(RegexPattern, (pseudoRegex, argument) => pseudoRegex.Replace($"{{{argument.Name}}}", argument.Regex)).Replace(" ", "\\s?");
 
     private int BinaryPrefix { get; } = BinaryPrefix;
 
@@ -94,7 +94,7 @@ public record Instruction(string RegexPattern, int BinaryPrefix, params Argument
 
     public int Process(string line, int programCounter, AssemblyFile assemblyFile)
     {
-        var regex = Regex.Match(line, RegexPattern, RegexOptions.IgnoreCase);
+        var regex = Regex.Match(line, $@"^\s?{RegexPattern}\s?$", RegexOptions.IgnoreCase);
         if (!regex.Success) return -1;
         var args = regex.Groups;
         Log.Verbose("{Instruction} instruction detected (PC #{PC}), parsed {Arguments}", RegexPattern, programCounter,
