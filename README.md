@@ -10,13 +10,13 @@ We aimed to model a simplified ARM Cortex M0 processor using the Logisim Evoluti
 
 Our processor is made up of 3 main components: 
 
-** The Arithmetic Logic Unit (ALU)**
+**The Arithmetic Logic Unit (ALU)**  
 The ALU is responsible for performing calculations within the processor. It takes (among other things) two 32-bit operands and a specified operation as input and outputs the result of the calculation along with flags. These flags indicate various states following a calculation, such as negative result, zero result, carry, or overflow, which are used in conditional branching. The two input operands are provided by the register bank.
 
-**The Register Bank**
+**The Register Bank**  
 The register bank serves as the processor's internal memory. As its name suggests, it's made up of several registers. In our project, there are 8 ranging from R0 to R7 reserved for general use.
 
-**The controller**
+**The controller**  
 The controller plays the role of orchestra conductor within the processor. It is responsible for decoding instructions received by the processor. These instructions are forwarded by the instruction decoder to the corresponding submodule.
 * Data Processing: Performs arithmetic operations between two registers and writes the result to a register.
 * Shift, Add, Subtract, Move Block: Performs shifting, addition, subtraction, and comparison operations between a register and an immediate value. This block also has the ability to store an immediate value into a register.
